@@ -18,6 +18,9 @@
       padding: 20px;
       border-bottom: 1px solid #ddd;
       text-align: center;
+      display: flex;
+      align-items: center;  /* Alinha o texto e a coroa */
+      justify-content: center;
       position: relative;
     }
 
@@ -27,15 +30,13 @@
       color: #d6a100; /* Cor dourada para destacar o nome */
       text-transform: uppercase;
       letter-spacing: 2px;
-      position: relative;
-      display: inline-block;
+      margin-right: 10px;  /* Cria o espaçamento entre o texto e a coroa */
     }
 
     header h1::after {
       content: "👑"; /* Ícone de coroa depois do nome da loja */
       font-size: 45px;
-      position: absolute;
-      right: -50px; /* Alinhamento da coroa à direita */
+      position: relative;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -371,4 +372,5 @@
   </a>
 </body>
 </html>
+
 
