@@ -11,6 +11,8 @@
     body {
       font-family: 'Montserrat', sans-serif;
       background: #f5f5f5;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     header {
@@ -22,7 +24,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      flex-direction: column; /* Alinha coroa e texto verticalmente */
     }
 
     header h1 {
@@ -43,7 +44,7 @@
     }
 
     .banner-container {
-      max-width: 700px;
+      max-width: 100%;
       margin: 20px auto;
       position: relative;
     }
@@ -103,7 +104,6 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
       position: relative;
-      margin-bottom: 20px;
     }
 
     .produto img {
@@ -361,14 +361,91 @@
         <a class="btn-detalhes" href="produtos/ignite-v250.html">Ver mais detalhes</a>
       </div>
 
-      <!-- Continue with the other products similarly -->
+      <div class="produto">
+        <span class="tag-desconto">-20%</span>
+        <img src="ignite-v120.jpg" alt="IGNITE V120">
+        <h3>IGNITE V120</h3>
+        <p class="preco-antigo">De R$ 69,90</p>
+        <p class="preco-novo">Por R$ 55,90</p>
+        <a class="btn-detalhes" href="produtos/ignite-v120.html">Ver mais detalhes</a>
+      </div>
+
+      <div class="produto">
+        <span class="tag-desconto">-35%</span>
+        <img src="ignite-v50.jpg" alt="IGNITE V50 BLACK">
+        <h3>IGNITE V50 BLACK</h3>
+        <p class="preco-antigo">De R$ 59,90</p>
+        <p class="preco-novo">Por R$ 38,90</p>
+        <a class="btn-detalhes" href="produtos/ignite-v50-black.html">Ver mais detalhes</a>
+      </div>
+
+      <div class="produto">
+        <span class="tag-desconto">-30%</span>
+        <img src="elfbar-ice-king.jpg" alt="ELFBAR ICE KING 40K">
+        <h3>ELFBAR ICE KING 40K</h3>
+        <p class="preco-antigo">De R$ 109,90</p>
+        <p class="preco-novo">Por R$ 76,90</p>
+        <a class="btn-detalhes" href="produtos/elfbar-ice-king-40k.html">Ver mais detalhes</a>
+      </div>
+
+      <div class="produto">
+        <span class="tag-desconto">-40%</span>
+        <img src="sex-addict-s280.jpg" alt="SEX ADDICT s280">
+        <h3>SEX ADDICT s280</h3>
+        <p class="preco-antigo">De R$ 149,90</p>
+        <p class="preco-novo">Por R$ 89,90</p>
+        <a class="btn-detalhes" href="produtos/sex-addict-s280.html">Ver mais detalhes</a>
+      </div>
     </section>
   </div>
 
   <div class="blog">
     <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
 
-    <!-- Blog articles go here -->
+    <div class="artigo">
+      <img src="img-artigo1.jpg" alt="Artigo 1">
+      <div class="artigo-content">
+        <h3>1. Alternativa ao cigarro tradicional</h3>
+        <p>Reduz a exposição a toxinas presentes na queima do tabaco convencional.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+
+    <div class="artigo">
+      <img src="img-artigo2.jpg" alt="Artigo 2">
+      <div class="artigo-content">
+        <h3>2. Menor odor e impacto social</h3>
+        <p>Não deixa cheiro forte nas roupas ou ambientes.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+
+    <div class="artigo">
+      <img src="img-artigo3.jpg" alt="Artigo 3">
+      <div class="artigo-content">
+        <h3>3. Variedade de sabores</h3>
+        <p>Explora uma ampla gama de opções de sabores agradáveis.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+
+    <div class="artigo">
+      <img src="img-artigo4.jpg" alt="Artigo 4">
+      <div class="artigo-content">
+        <h3>4. Controle da nicotina</h3>
+        <p>Você escolhe se quer com ou sem nicotina, e em qual nível.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+
+    <div class="artigo">
+      <img src="img-artigo5.jpg" alt="Artigo 5">
+      <div class="artigo-content">
+        <h3>5. Praticidade e uso moderno</h3>
+        <p>Design discreto e elegante, fácil de usar em qualquer lugar.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
   </div>
 
   <a class="zap-fixo" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
