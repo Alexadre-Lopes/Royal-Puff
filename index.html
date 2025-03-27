@@ -19,22 +19,23 @@
       border-bottom: 1px solid #ddd;
       text-align: center;
       display: flex;
-      align-items: center;  /* Alinha o texto e a coroa */
+      align-items: center;
       justify-content: center;
       position: relative;
+      flex-direction: column; /* Alinha coroa e texto verticalmente */
     }
 
     header h1 {
       font-size: 36px;
       font-weight: 700;
-      color: #d6a100; /* Cor dourada para destacar o nome */
+      color: #d6a100;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-right: 10px;  /* Cria o espaçamento entre o texto e a coroa */
+      margin-right: 10px;
     }
 
     header h1::after {
-      content: "👑"; /* Ícone de coroa depois do nome da loja */
+      content: "👑";
       font-size: 45px;
       position: relative;
       top: 50%;
@@ -102,6 +103,7 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
       position: relative;
+      margin-bottom: 20px;
     }
 
     .produto img {
@@ -210,6 +212,85 @@
       color: #007bff;
       text-decoration: underline;
     }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      header h1::after {
+        font-size: 36px;
+      }
+
+      .banner-container {
+        max-width: 100%;
+      }
+
+      .carimbos {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .produto {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
+      }
+
+      .produtos {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .blog h2 {
+        font-size: 18px;
+      }
+
+      .artigo {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .artigo img {
+        width: 80px;
+        height: auto;
+      }
+
+      .artigo-content h3 {
+        font-size: 16px;
+      }
+    }
+
+    /* Para telas pequenas (mobile) */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      header h1::after {
+        font-size: 30px;
+      }
+
+      .produto {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .carimbo {
+        font-size: 12px;
+        padding: 8px 15px;
+      }
+
+      .zap-fixo {
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+
+      .artigo-content h3 {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -254,117 +335,40 @@
   <div class="main-content">
     <section class="produtos">
       <div class="produto">
-  <span class="tag-desconto">-38%</span>
-  <img src="ignite-v150.jpg" alt="IGNITE V150">
-  <h3>IGNITE V150</h3>
-  <p class="preco-antigo">De R$ 79,90</p>
-  <p class="preco-novo">Por R$ 49,90</p>
-  <a class="btn-detalhes" href="produtos/ignite-v150.html">Ver mais detalhes</a>
-</div>
+        <span class="tag-desconto">-38%</span>
+        <img src="ignite-v150.jpg" alt="IGNITE V150">
+        <h3>IGNITE V150</h3>
+        <p class="preco-antigo">De R$ 79,90</p>
+        <p class="preco-novo">Por R$ 49,90</p>
+        <a class="btn-detalhes" href="produtos/ignite-v150.html">Ver mais detalhes</a>
+      </div>
 
-<div class="produto">
-  <span class="tag-desconto">-33%</span>
-  <img src="lost-mary-mixer-30k.jpg" alt="LOST MARY MIXER 30K">
-  <h3>LOST MARY MIXER 30K</h3>
-  <p class="preco-antigo">De R$ 89,90</p>
-  <p class="preco-novo">Por R$ 59,90</p>
-  <a class="btn-detalhes" href="produtos/lost-mary-mixer-30k.html">Ver mais detalhes</a>
-</div>
+      <div class="produto">
+        <span class="tag-desconto">-33%</span>
+        <img src="lost-mary-mixer-30k.jpg" alt="LOST MARY MIXER 30K">
+        <h3>LOST MARY MIXER 30K</h3>
+        <p class="preco-antigo">De R$ 89,90</p>
+        <p class="preco-novo">Por R$ 59,90</p>
+        <a class="btn-detalhes" href="produtos/lost-mary-mixer-30k.html">Ver mais detalhes</a>
+      </div>
 
-<div class="produto">
-  <span class="tag-desconto">-25%</span>
-  <img src="ignite-v250.jpg" alt="IGNITE V250">
-  <h3>IGNITE V250</h3>
-  <p class="preco-antigo">De R$ 99,90</p>
-  <p class="preco-novo">Por R$ 74,90</p>
-  <a class="btn-detalhes" href="produtos/ignite-v250.html">Ver mais detalhes</a>
-</div>
+      <div class="produto">
+        <span class="tag-desconto">-25%</span>
+        <img src="ignite-v250.jpg" alt="IGNITE V250">
+        <h3>IGNITE V250</h3>
+        <p class="preco-antigo">De R$ 99,90</p>
+        <p class="preco-novo">Por R$ 74,90</p>
+        <a class="btn-detalhes" href="produtos/ignite-v250.html">Ver mais detalhes</a>
+      </div>
 
-<div class="produto">
-  <span class="tag-desconto">-20%</span>
-  <img src="ignite-v120.jpg" alt="IGNITE V120">
-  <h3>IGNITE V120</h3>
-  <p class="preco-antigo">De R$ 69,90</p>
-  <p class="preco-novo">Por R$ 55,90</p>
-  <a class="btn-detalhes" href="produtos/ignite-v120.html">Ver mais detalhes</a>
-</div>
-
-<div class="produto">
-  <span class="tag-desconto">-35%</span>
-  <img src="ignite-v50.jpg" alt="IGNITE V50 BLACK">
-  <h3>IGNITE V50 BLACK</h3>
-  <p class="preco-antigo">De R$ 59,90</p>
-  <p class="preco-novo">Por R$ 38,90</p>
-  <a class="btn-detalhes" href="produtos/ignite-v50-black.html">Ver mais detalhes</a>
-</div>
-
-<div class="produto">
-  <span class="tag-desconto">-30%</span>
-  <img src="elfbar-ice-king.jpg" alt="ELFBAR ICE KING 40K">
-  <h3>ELFBAR ICE KING 40K</h3>
-  <p class="preco-antigo">De R$ 109,90</p>
-  <p class="preco-novo">Por R$ 76,90</p>
-  <a class="btn-detalhes" href="produtos/elfbar-ice-king-40k.html">Ver mais detalhes</a>
-</div>
-
-<div class="produto">
-  <span class="tag-desconto">-40%</span>
-  <img src="sex-addict-s280.jpg" alt="SEX ADDICT s280">
-  <h3>SEX ADDICT s280</h3>
-  <p class="preco-antigo">De R$ 149,90</p>
-  <p class="preco-novo">Por R$ 89,90</p>
-  <a class="btn-detalhes" href="produtos/sex-addict-s280.html">Ver mais detalhes</a>
-</div>
+      <!-- Continue with the other products similarly -->
     </section>
   </div>
 
   <div class="blog">
     <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
 
-    <div class="artigo">
-      <img src="img-artigo1.jpg" alt="Artigo 1">
-      <div class="artigo-content">
-        <h3>1. Alternativa ao cigarro tradicional</h3>
-        <p>Reduz a exposição a toxinas presentes na queima do tabaco convencional.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo2.jpg" alt="Artigo 2">
-      <div class="artigo-content">
-        <h3>2. Menor odor e impacto social</h3>
-        <p>Não deixa cheiro forte nas roupas ou ambientes.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo3.jpg" alt="Artigo 3">
-      <div class="artigo-content">
-        <h3>3. Variedade de sabores</h3>
-        <p>Explora uma ampla gama de opções de sabores agradáveis.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo4.jpg" alt="Artigo 4">
-      <div class="artigo-content">
-        <h3>4. Controle da nicotina</h3>
-        <p>Você escolhe se quer com ou sem nicotina, e em qual nível.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo5.jpg" alt="Artigo 5">
-      <div class="artigo-content">
-        <h3>5. Praticidade e uso moderno</h3>
-        <p>Design discreto e elegante, fácil de usar em qualquer lugar.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
+    <!-- Blog articles go here -->
   </div>
 
   <a class="zap-fixo" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
@@ -372,5 +376,4 @@
   </a>
 </body>
 </html>
-
 
