@@ -21,8 +21,21 @@
     }
 
     header h1 {
-      font-size: 28px;
-      color: #111;
+      font-size: 32px;
+      font-weight: 700;
+      color: #d6a100; /* Cor dourada para destacar o nome */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    header h1::before {
+      content: "👑"; /* Ícone de coroa antes do nome da loja */
+      font-size: 40px;
+      position: absolute;
+      left: -40px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .banner-container {
@@ -356,4 +369,3 @@
   </a>
 </body>
 </html>
-
