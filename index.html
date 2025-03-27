@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minha Loja Express</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -13,58 +13,42 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: #f5f5f5;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 220px;
-      background-color: #111;
-      color: white;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .sidebar h2 {
-      margin-bottom: 20px;
-    }
-
-    .sidebar ul {
-      list-style: none;
-    }
-
-    .sidebar ul li {
-      margin-bottom: 15px;
-    }
-
-    .sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 20px;
     }
 
     header {
       background: #fff;
       padding: 20px;
       border-bottom: 1px solid #ddd;
-      margin-bottom: 20px;
+      text-align: center;
     }
 
     header h1 {
-      font-size: 24px;
+      font-size: 28px;
       color: #111;
+    }
+
+    .banner {
+      width: 100%;
+      height: auto;
+      margin: 20px auto;
+      max-width: 1000px;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .main-content {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .produtos {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
 
     .produto {
@@ -85,6 +69,7 @@
 
     .produto h3 {
       margin: 10px 0 5px;
+      font-weight: 600;
     }
 
     .preco-antigo {
@@ -120,6 +105,7 @@
       border-radius: 5px;
       display: inline-block;
       margin-top: 10px;
+      font-weight: bold;
     }
 
     .btn-detalhes {
@@ -142,19 +128,14 @@
   </style>
 </head>
 <body>
-  <nav class="sidebar">
-    <h2>Categorias</h2>
-    <ul>
-      <li><a href="#descartaveis">Descartáveis</a></li>
-    </ul>
-  </nav>
+  <header>
+    <h1>Minha Loja Express</h1>
+  </header>
+
+  <img class="banner" src="banner1.jpg" alt="Banner principal">
 
   <div class="main-content">
-    <header>
-      <h1>Minha Loja Express</h1>
-    </header>
-
-    <section id="descartaveis" class="produtos">
+    <section class="produtos">
       <div class="produto">
         <span class="tag-desconto">-38%</span>
         <img src="ignite-v150.jpg" alt="IGNITE V150">
