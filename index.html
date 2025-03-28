@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minha Loja Express</title>
+  <title>ROYAL PUFF BH</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,11 +64,18 @@
     }
     .produto img {
       width: 100%;
+      height: 180px;
+      object-fit: contain;
       border-radius: 5px;
+      margin-bottom: 10px;
     }
     .produto h3 {
       margin: 10px 0 5px;
       font-weight: 600;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .preco-antigo {
       text-decoration: line-through;
@@ -88,7 +95,8 @@
       border-radius: 5px;
       border: 1px solid #ccc;
       font-weight: 600;
-      color: #007bff;
+      color: #333;
+      background-color: #fff;
     }
     button.adicionar {
       background: #25D366;
@@ -99,18 +107,31 @@
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button.adicionar:hover {
+      background: #1fbb58;
     }
     .feedback {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #25D366;
       color: white;
-      padding: 10px;
+      padding: 12px 24px;
       text-align: center;
       border-radius: 5px;
       font-weight: 600;
-      margin: 10px auto;
       display: none;
-      max-width: 400px;
-      width: 100%;
+      max-width: 80%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: fadeInOut 2s ease-in-out;
+    }
+    @keyframes fadeInOut {
+      0%,100% { opacity: 0; top: 10px; }
+      10%,90% { opacity: 1; top: 20px; }
     }
     .carrinho-toggle {
       position: fixed;
@@ -118,18 +139,33 @@
       right: 20px;
       background: #007bff;
       color: white;
-      padding: 10px 16px;
-      border-radius: 25px;
+      padding: 12px 20px;
+      border-radius: 30px;
       font-weight: bold;
       border: none;
       z-index: 1000;
       cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .carrinho-toggle span {
+      background: #fff;
+      color: #007bff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
     }
     .carrinho-container {
       display: none;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.2);
       padding: 20px;
       position: fixed;
       bottom: 140px;
@@ -143,9 +179,14 @@
       margin-bottom: 15px;
       font-size: 22px;
       color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .carrinho-itens p {
       margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
     }
     .btn-remover {
       background: #ff4d4d;
@@ -156,6 +197,10 @@
       font-size: 12px;
       margin-left: 10px;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-remover:hover {
+      background: #e60000;
     }
     .btn-finalizar {
       background: #007bff;
@@ -167,6 +212,11 @@
       font-weight: bold;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+    .btn-finalizar:hover {
+      background: #0069d9;
     }
     .zap-flutuante {
       position: fixed;
@@ -174,26 +224,50 @@
       right: 20px;
       background: #25D366;
       color: white;
-      padding: 12px 18px;
+      padding: 14px 20px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
       font-size: 14px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
       z-index: 999;
-    }
-    .produto, .feedback, .carrinho-container, .carrinho-toggle, .btn-finalizar, .btn-remover, .zap-flutuante {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.3s ease;
     }
-    .produto:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    .btn-finalizar:hover, .btn-remover:hover, .adicionar:hover, .carrinho-toggle:hover {
-      opacity: 0.9;
-    }
     .zap-flutuante:hover {
-      transform: scale(1.05);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .empty-cart {
+      text-align: center;
+      color: #888;
+      padding: 20px 0;
+    }
+    .total-carrinho {
+      font-weight: bold;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 2px solid #eee;
+    }
+
+    @media (max-width: 768px) {
+      .produto {
+        width: calc(50% - 20px);
+      }
+      .carrinho-container {
+        width: 90%;
+        right: 5%;
+      }
+    }
+    @media (max-width: 480px) {
+      .produto {
+        width: 100%;
+      }
+      header h1 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
@@ -205,260 +279,242 @@
     <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
     <section class="produtos" id="lista-produtos"></section>
   </div>
-  <button class="carrinho-toggle" onclick="toggleCarrinho()">🛒 Ver Carrinho</button>
+  <button class="carrinho-toggle" onclick="toggleCarrinho()">
+    <span id="cart-count">0</span> 🛒 Carrinho
+  </button>
   <div class="carrinho-container" id="carrinho-box">
     <h2>🛒 Carrinho</h2>
-    <div class="carrinho-itens" id="carrinho-itens"></div>
+    <div class="carrinho-itens" id="carrinho-itens">
+      <p class="empty-cart">Seu carrinho está vazio</p>
+    </div>
     <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
   </div>
-  <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">💬 Fale conosco no WhatsApp</a>
+  <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" target="_blank">
+    💬 Fale conosco
+  </a>
+
   <script>
     const produtos = [
-  { 
-    nome: 'IGNITE V50', 
-    imagem: 'ignite-v50.jpg', 
-    preco: 100.00, 
-    sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
-    puffs: '5' 
-  },
-  { 
-    nome: 'Vape Soul ULTRA', 
-    imagem: 'vape-soul-ultra.jpg', 
-    preco: 112.00, 
-    sabores: [
-      'Spearmint', 
-      'Fresh Watermelon', 
-      'Berry Grape', 
-      'Grape Raspberry Lemon', 
-      'Cola Lime', 
-      'Pink Lemonade', 
-      'Sour Blueberry Raspberry', 
-      'Blue Razz', 
-      'Pineapple Ice', 
-      'Sour Apple', 
-      'Mango Ice', 
-      'Blueberry', 
-      'Love 66', 
-      'Passion Grapefruit', 
-      'Strawberry Watermelon Bubblegum'
-    ], 
-    puffs: '20' 
-  },
-  { 
-    nome: 'IGNITE V120', 
-    imagem: 'ignite-v120.jpg', 
-    preco: 134.40, 
-    sabores: [
-      'Straw Banana', 
-      'Cactus', 
-      'Blue Razz Lemon', 
-      'Mixed Berries', 
-      'Lemon Lime', 
-      'Mango Cream', 
-      'Watermelon Ice', 
-      'Menthol', 
-      'Blueberry Mint', 
-      'Peach Ice', 
-      'Pomegranate Lemon', 
-      'Watermelon Peach'
-    ], 
-    puffs: '12' 
-  },
-  { 
-    nome: 'IGNITE V150', 
-    imagem: 'ignite-v150.jpg', 
-    preco: 144.00, 
-    sabores: [
-      'Strawberry Apple Watermelon', 
-      'Peppermint & Cream', 
-      'Strawberry Ice', 
-      'Watermelon Mix', 
-      'Watermelon Dragon Fruit'
-    ], 
-    puffs: '15' 
-  },
-  { 
-    nome: 'Elfbar 30K', 
-    imagem: 'elfbar-30k.jpg', 
-    preco: 153.30, 
-    sabores: [
-      'Green Apple Ice', 
-      'Spearmint', 
-      'Sour Lush Gami', 
-      'Cherry Strazz', 
-      'Bubbaloo Tutti Frutti', 
-      'Blueberry Sour Raspberry', 
-      'Elf Love'
-    ], 
-    puffs: '30' 
-  },
-  { 
-    nome: 'Elfbar Nic King', 
-    imagem: 'elfbar-nic-king.jpg', 
-    preco: 168.00, 
-    sabores: [
-      'Pomegranate Burst', 
-      'Lemon Lime Ice Tea', 
-      'Icy Blue Rose', 
-      'Sour Strawberry Dragonfruit', 
-      'Watermelon Ice', 
-      'Watermelon Cherry', 
-      'Grape Cranberry', 
-      'Berry Ice', 
-      'Pineapple Dragonfruit Grapefruit', 
-      'Mixed Berries Tea', 
-      'Pear Soda', 
-      'Apple Candy', 
-      'Apple Watermelon', 
-      'Sour Cherry Candy', 
-      'Chilly River', 
-      'Blue Razz Ice', 
-      'Key Lime', 
-      'Berry Candy', 
-      'Red Raspberry Strawberry'
-    ], 
-    puffs: '40' 
-  },
-  { 
-    nome: 'IGNITE V250', 
-    imagem: 'ignite-v250.jpg', 
-    preco: 178.64, 
-    sabores: [
-      'Strawberry Banana', 
-      'Pineapple Ice', 
-      'Menthol', 
-      'Green Apple', 
-      'Watermelon Mix', 
-      'Peach Mango', 
-      'Strawberry Ice'
-    ], 
-    puffs: '25' 
-  },
-  { 
-    nome: 'UWELL', 
-    imagem: 'uwell.jpg', 
-    preco: 189.80, 
-    sabores: [
-      'Watermelon Bubble Gum & Rose Lychee Ice', 
-      'Rose Lychee Ice & Strawberry Banana Ice', 
-      'Triple Mango & Honeydew Ice Cream', 
-      'Blackcurrant Grape & Sea Salt Lemon'
-    ], 
-    puffs: '40' 
-  },
-  { 
-    nome: 'Lost Mary Mixer', 
-    imagem: 'lost-mary-mixer-30k.jpg', 
-    preco: 189.93, 
-    sabores: [
-      'Mix Mint', 
-      'Blue Razz Ice', 
-      'Raspberry Pineapple', 
-      'Apple Grape', 
-      'Miami Chill', 
-      'Orange Strawberry', 
-      'Cherry Lemon', 
-      'Grapefruit Lemon Lime', 
-      'Banana Cherry Ice', 
-      'Watermelon Ice', 
-      'Blueberry Watermelon', 
-      'Mango Strawberry Ice', 
-      'Aloe Grape Sour Apple', 
-      'Red Raspberry Strawberry', 
-      'Watermelon B-Pop'
-    ], 
-    puffs: '30' 
-  },
-  { 
-    nome: 'Sex addict - by Dan Bilzerian', 
-    imagem: 'sex-addict-s280.jpg', 
-    preco: 204.00, 
-    sabores: [
-      'Grape Kiwi Ice', 
-      'Strawberry Banana Ice', 
-      'Menthol', 
-      'Banana Ice', 
-      'Pineapple Ice', 
-      'Strawberry Kiwi Ice', 
-      'Watermelon Ice'
-    ], 
-    puffs: '28' 
-  }
-];
-
+      { 
+        nome: 'IGNITE V50', 
+        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V50', 
+        preco: 100.00, 
+        sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
+        puffs: '5' 
+      },
+      { 
+        nome: 'Vape Soul ULTRA', 
+        imagem: 'https://via.placeholder.com/240x240?text=Vape+Soul+ULTRA', 
+        preco: 112.00, 
+        sabores: [
+          'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
+          'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz',
+          'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66',
+          'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'
+        ], 
+        puffs: '20' 
+      },
+      { 
+        nome: 'IGNITE V120', 
+        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V120', 
+        preco: 134.40, 
+        sabores: [
+          'Straw Banana', 'Cactus', 'Blue Razz Lemon', 'Mixed Berries',
+          'Lemon Lime', 'Mango Cream', 'Watermelon Ice', 'Menthol',
+          'Blueberry Mint', 'Peach Ice', 'Pomegranate Lemon', 'Watermelon Peach'
+        ], 
+        puffs: '12' 
+      },
+      { 
+        nome: 'IGNITE V150', 
+        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V150', 
+        preco: 144.00, 
+        sabores: [
+          'Strawberry Apple Watermelon', 'Peppermint & Cream', 'Strawberry Ice',
+          'Watermelon Mix', 'Watermelon Dragon Fruit'
+        ], 
+        puffs: '15' 
+      },
+      { 
+        nome: 'Elfbar 30K', 
+        imagem: 'https://via.placeholder.com/240x240?text=Elfbar+30K', 
+        preco: 153.30, 
+        sabores: [
+          'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
+          'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'
+        ], 
+        puffs: '30' 
+      },
+      { 
+        nome: 'Elfbar Nic King', 
+        imagem: 'https://via.placeholder.com/240x240?text=Elfbar+Nic+King', 
+        preco: 168.00, 
+        sabores: [
+          'Pomegranate Burst', 'Lemon Lime Ice Tea', 'Icy Blue Rose',
+          'Sour Strawberry Dragonfruit', 'Watermelon Ice', 'Watermelon Cherry',
+          'Grape Cranberry', 'Berry Ice', 'Pineapple Dragonfruit Grapefruit',
+          'Mixed Berries Tea', 'Pear Soda', 'Apple Candy', 'Apple Watermelon',
+          'Sour Cherry Candy', 'Chilly River', 'Blue Razz Ice', 'Key Lime',
+          'Berry Candy', 'Red Raspberry Strawberry'
+        ], 
+        puffs: '40' 
+      },
+      { 
+        nome: 'IGNITE V250', 
+        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V250', 
+        preco: 178.64, 
+        sabores: [
+          'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
+          'Watermelon Mix', 'Peach Mango', 'Strawberry Ice'
+        ], 
+        puffs: '25' 
+      },
+      { 
+        nome: 'UWELL', 
+        imagem: 'https://via.placeholder.com/240x240?text=UWELL', 
+        preco: 189.80, 
+        sabores: [
+          'Watermelon Bubble Gum & Rose Lychee Ice',
+          'Rose Lychee Ice & Strawberry Banana Ice',
+          'Triple Mango & Honeydew Ice Cream',
+          'Blackcurrant Grape & Sea Salt Lemon'
+        ], 
+        puffs: '40' 
+      },
+      { 
+        nome: 'Lost Mary Mixer', 
+        imagem: 'https://via.placeholder.com/240x240?text=Lost+Mary+Mixer', 
+        preco: 189.93, 
+        sabores: [
+          'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
+          'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime',
+          'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon',
+          'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry',
+          'Watermelon B-Pop'
+        ], 
+        puffs: '30' 
+      },
+      { 
+        nome: 'Sex addict - by Dan Bilzerian', 
+        imagem: 'https://via.placeholder.com/240x240?text=Sex+addict', 
+        preco: 204.00, 
+        sabores: [
+          'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
+          'Pineapple Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'
+        ], 
+        puffs: '28' 
+      }
+    ];
 
     const carrinho = [];
     const lista = document.getElementById('lista-produtos');
     const carrinhoItens = document.getElementById('carrinho-itens');
     const feedbackMsg = document.getElementById('feedback-msg');
     const carrinhoBox = document.getElementById('carrinho-box');
+    const cartCount = document.getElementById('cart-count');
 
+    // Carrega os produtos na página
+    function carregarProdutos() {
+      lista.innerHTML = '';
+      produtos.forEach((produto, index) => {
+        const precoOriginal = (produto.preco * 1.15).toFixed(2);
+        const div = document.createElement('div');
+        div.className = 'produto';
+        div.innerHTML = `
+          <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
+          <img src="${produto.imagem}" alt="${produto.nome}">
+          <h3>${produto.nome}</h3>
+          <p class="preco-antigo">De R$ ${precoOriginal}</p>
+          <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
+          <select id="sabor-${index}">
+            ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
+          </select>
+          <button class="adicionar" onclick="adicionarCarrinho(${index})">Adicionar ao carrinho</button>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    // Alterna a visibilidade do carrinho
     function toggleCarrinho() {
       carrinhoBox.style.display = carrinhoBox.style.display === 'none' || carrinhoBox.style.display === '' ? 'block' : 'none';
     }
 
-    produtos.forEach((produto, index) => {
-      const precoOriginal = (produto.preco * 1.15).toFixed(2);
-      const div = document.createElement('div');
-      div.className = 'produto';
-      div.innerHTML = `
-        <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
-        <img src="${produto.imagem}" alt="${produto.nome}">
-        <h3>${produto.nome}</h3>
-        <p class="preco-antigo">De R$ ${precoOriginal}</p>
-        <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
-        <select id="sabor-${index}">
-          ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
-        </select>
-        <button class="adicionar" onclick="adicionarCarrinho(${index})">Adicionar ao carrinho</button>
-      `;
-      lista.appendChild(div);
-    });
-
+    // Adiciona um produto ao carrinho
     function adicionarCarrinho(index) {
       const saborSelecionado = document.getElementById(`sabor-${index}`).value;
       const produto = produtos[index];
-      carrinho.push({ nome: produto.nome, sabor: saborSelecionado, preco: produto.preco });
+      
+      carrinho.push({
+        nome: produto.nome,
+        sabor: saborSelecionado,
+        preco: produto.preco
+      });
+      
       atualizarCarrinho();
       mostrarFeedback();
     }
 
+    // Remove um item do carrinho
     function removerItem(posicao) {
       carrinho.splice(posicao, 1);
       atualizarCarrinho();
     }
 
+    // Atualiza a exibição do carrinho
     function atualizarCarrinho() {
+      if (carrinho.length === 0) {
+        carrinhoItens.innerHTML = '<p class="empty-cart">Seu carrinho está vazio</p>';
+        cartCount.textContent = '0';
+        return;
+      }
+      
       const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      
       carrinhoItens.innerHTML = carrinho.map((item, i) => `
-        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
+        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} 
+        <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
       `).join('');
-      carrinhoItens.innerHTML += `<hr><p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
+      
+      carrinhoItens.innerHTML += `<p class="total-carrinho">Total: R$ ${total.toFixed(2)}</p>`;
+      cartCount.textContent = carrinho.length;
     }
 
+    // Mostra mensagem de feedback quando adiciona ao carrinho
     function mostrarFeedback() {
       feedbackMsg.style.display = 'block';
       setTimeout(() => {
         feedbackMsg.style.display = 'none';
-      }, 1800);
+      }, 2000);
     }
 
+    // Finaliza o pedido via WhatsApp
     function finalizarPedido() {
       if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
+        alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
         return;
       }
-      let mensagem = 'Olá! Quero fazer um pedido:%0A';
+      
+      let mensagem = 'Olá, gostaria de fazer o seguinte pedido:%0A%0A';
+      mensagem += '*ITENS DO PEDIDO:*%0A';
+      
       carrinho.forEach(item => {
         mensagem += `- ${item.nome} (${item.sabor}) - R$ ${item.preco.toFixed(2)}%0A`;
       });
+      
       const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
-      mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+      mensagem += `%0A*TOTAL: R$ ${total.toFixed(2)}*%0A%0A`;
+      mensagem += 'Por favor, confirme meu pedido! Obrigado!';
+      
       const url = `https://wa.me/5531999456030?text=${mensagem}`;
       window.open(url, '_blank');
     }
+
+    // Inicializa a página
+    window.onload = function() {
+      carregarProdutos();
+      atualizarCarrinho();
+    };
   </script>
 </body>
 </html>
-
-
