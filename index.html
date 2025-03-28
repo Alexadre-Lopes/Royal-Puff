@@ -7,263 +7,101 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Montserrat', sans-serif;
       background: #f5f5f5;
       width: 100%;
       overflow-x: hidden;
     }
-
     header {
       background: #fff;
       padding: 20px;
       border-bottom: 1px solid #ddd;
       text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
     }
-
     header h1 {
       font-size: 36px;
       font-weight: 700;
       color: #d6a100;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-right: 10px;
     }
-
-    header h1::after {
-      content: "👑";
-      font-size: 45px;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .banner-container {
-      max-width: 100%;
-      margin: 20px auto;
-      position: relative;
-    }
-
-    .banner-container a {
-      display: block;
-    }
-
-    .banner-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      display: none;
-    }
-
-    .banner-container img.active {
-      display: block;
-    }
-
-    .carimbos {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px auto;
-      flex-wrap: wrap;
-    }
-
-    .carimbo {
-      background: #fff;
-      color: #333;
-      padding: 10px 20px;
-      border: 2px dashed #25D366;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
     .main-content {
       padding: 20px;
       max-width: 1200px;
       margin: auto;
     }
-
     .produtos {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
     }
-
     .produto {
       background: #fff;
       border-radius: 8px;
       padding: 15px;
-      width: 220px;
+      width: 240px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
-      position: relative;
     }
-
     .produto img {
       width: 100%;
       border-radius: 5px;
     }
-
     .produto h3 {
       margin: 10px 0 5px;
       font-weight: 600;
     }
-
-    .preco-antigo {
-      text-decoration: line-through;
-      color: #888;
-      font-size: 14px;
-    }
-
     .preco-novo {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       color: #d60000;
       margin: 5px 0;
     }
-
-    .tag-desconto {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #d60000;
-      color: #fff;
-      padding: 5px 8px;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .btn-detalhes {
-      background: #007bff;
-      color: #fff;
-      padding: 10px;
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
       border-radius: 5px;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: bold;
+      border: 1px solid #ccc;
     }
-
-    .zap-fixo {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
+    button.adicionar {
       background: #25D366;
       color: white;
-      padding: 12px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 999;
-    }
-
-    /* Carrinho */
-    .carrinho {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-      gap: 15px;
-    }
-
-    .carrinho select, .carrinho button {
-      font-size: 16px;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
-
-    .carrinho button {
-      background-color: #25D366;
-      color: white;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
       font-weight: bold;
+      cursor: pointer;
     }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 28px;
-      }
-
-      header h1::after {
-        font-size: 36px;
-      }
-
-      .banner-container {
-        max-width: 100%;
-      }
-
-      .carimbos {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .produto {
-        width: 100%;
-        max-width: 300px;
-        margin: 10px 0;
-      }
-
-      .produtos {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .blog h2 {
-        font-size: 18px;
-      }
-
-      .artigo {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .artigo img {
-        width: 80px;
-        height: auto;
-      }
-
-      .artigo-content h3 {
-        font-size: 16px;
-      }
+    .carrinho-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
     }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 24px;
-      }
-
-      header h1::after {
-        font-size: 30px;
-      }
-
-      .produto {
-        width: 100%;
-        padding: 10px;
-      }
-
-      .carimbo {
-        font-size: 12px;
-        padding: 8px 15px;
-      }
-
-      .zap-fixo {
-        font-size: 14px;
-        padding: 10px 14px;
-      }
-
-      .artigo-content h3 {
-        font-size: 14px;
-      }
+    .carrinho-container h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333;
+    }
+    .carrinho-itens {
+      margin-bottom: 15px;
+    }
+    .btn-finalizar {
+      background: #007bff;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -272,92 +110,74 @@
     <h1>ROYAL PUFF BH</h1>
   </header>
 
-  <div class="banner-container">
-    <a id="bannerLink" href="produtos/ignite-v250.html">
-      <img id="banner1" class="active" src="banner1.jpg" alt="Banner 1">
-      <img id="banner2" src="banner2.jpg" alt="Banner 2">
-    </a>
-  </div>
-
-  <div class="carimbos">
-    <div class="carimbo">🚚 Entrega por toda Belo Horizonte e região metropolitana</div>
-    <div class="carimbo">📦 Produtos prontos para envio imediato</div>
-    <div class="carimbo">💬 Atendimento rápido via WhatsApp</div>
-  </div>
-
   <div class="main-content">
-    <section class="produtos">
-      <!-- Produtos e seus sabores -->
-      <div class="produto">
-        <span class="tag-desconto">-12,3%</span>
-        <img src="ignite-v50.jpg" alt="IGNITE V50 BLACK">
-        <h3>IGNITE V50</h3>
-        <p class="preco-antigo">De R$ 114,00</p>
-        <p class="preco-novo">Por R$ 100,00</p>
-        <div class="carrinho">
-          <select id="produto1-sabor">
-            <option value="watermelon-bubble-gum">Watermelon Bubble Gum 🍉🍬</option>
-            <option value="rose-lychee-ice">Rose Lychee Ice 🌹❄️</option>
-          </select>
-          <button onclick="adicionarAoCarrinho('IGNITE V50', document.getElementById('produto1-sabor').value)">Adicionar ao Carrinho</button>
-        </div>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-11,5%</span>
-        <img src="ignite-v120.jpg" alt="IGNITE V120">
-        <h3>IGNITE V120</h3>
-        <p class="preco-antigo">De R$ 151,87</p>
-        <p class="preco-novo">Por R$ 134,40</p>
-        <div class="carrinho">
-          <select id="produto2-sabor">
-            <option value="mango-bubblegum">Mango Bubblegum 🥭🍬</option>
-            <option value="grape-ice">Grape Ice 🍇❄️</option>
-          </select>
-          <button onclick="adicionarAoCarrinho('IGNITE V120', document.getElementById('produto2-sabor').value)">Adicionar ao Carrinho</button>
-        </div>
-      </div>
-
-      <!-- Continuar com todos os outros produtos da mesma forma -->
-
-    </section>
-
-    <!-- Botão para Finalizar o Pedido -->
-    <div class="carrinho">
-      <button onclick="gerarMensagem()">Finalizar Pedido</button>
+    <section class="produtos" id="lista-produtos"></section>
+    <div class="carrinho-container">
+      <h2>🛒 Carrinho</h2>
+      <div class="carrinho-itens" id="carrinho-itens"></div>
+      <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
     </div>
   </div>
 
   <script>
-    let carrinho = [];
+    const produtos = [
+      { nome: 'IGNITE V50', preco: 100.00, sabores: ['Blue Ice', 'Tropical Punch', 'Cotton Candy'] },
+      { nome: 'IGNITE V120', preco: 134.40, sabores: ['Mint', 'Strawberry Banana', 'Pineapple Ice'] },
+      { nome: 'IGNITE V150', preco: 144.00, sabores: ['Blueberry Ice', 'Mango Peach', 'Cool Mint'] },
+      { nome: 'IGNITE V250', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol', 'Strawberry Ice'] },
+      { nome: 'SEX ADDICT - by Dan Bilzerian', preco: 204.00, sabores: ['Grape Kiwi Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'] },
+      { nome: 'Vape Soul ULTRA', preco: 112.00, sabores: ['Tropical Ice', 'Energy Drink', 'Blue Mint'] },
+      { nome: 'Elfbar 30K', preco: 153.30, sabores: ['Peach Ice', 'Grape Mint', 'Lemon Passionfruit'] },
+      { nome: 'Elfbar Nic King', preco: 168.00, sabores: ['Green Apple', 'Strawberry Banana Ice', 'Mint Cream'] },
+      { nome: 'Lost Mary Mixer', preco: 189.93, sabores: ['Mix Mint', 'Blue Razz Ice', 'Mango Strawberry Ice'] },
+      { nome: 'UWELL', preco: 189.80, sabores: ['Watermelon Ice', 'Banana Grape', 'Cherry Lemon'] }
+    ];
 
-    function adicionarAoCarrinho(produto, sabor) {
-      carrinho.push({ produto: produto, sabor: sabor });
-      console.log(carrinho); // Apenas para debug
+    const carrinho = [];
+    const lista = document.getElementById('lista-produtos');
+    const carrinhoItens = document.getElementById('carrinho-itens');
+
+    produtos.forEach((produto, index) => {
+      const div = document.createElement('div');
+      div.className = 'produto';
+      div.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p class="preco-novo">R$ ${produto.preco.toFixed(2)}</p>
+        <select id="sabor-${index}">
+          ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
+        </select>
+        <button class="adicionar" onclick="adicionarCarrinho(${index})">Adicionar ao carrinho</button>
+      `;
+      lista.appendChild(div);
+    });
+
+    function adicionarCarrinho(index) {
+      const saborSelecionado = document.getElementById(`sabor-${index}`).value;
+      const produto = produtos[index];
+      carrinho.push({ nome: produto.nome, sabor: saborSelecionado, preco: produto.preco });
+      atualizarCarrinho();
     }
 
-    function gerarMensagem() {
-      let mensagem = "Pedido: ";
-      carrinho.forEach(item => {
-        mensagem += `${item.produto} - Sabor: ${item.sabor}, `;
-      });
-      mensagem = encodeURIComponent(mensagem);
+    function atualizarCarrinho() {
+      carrinhoItens.innerHTML = carrinho.map(item => `
+        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)}</p>
+      `).join('');
+    }
 
-      const link = `https://wa.me/5531999456030?text=${mensagem}`;
-      window.open(link, '_blank');
+    function finalizarPedido() {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+      let mensagem = 'Olá! Quero fazer um pedido:%0A';
+      carrinho.forEach(item => {
+        mensagem += `- ${item.nome} (${item.sabor}) - R$ ${item.preco.toFixed(2)}%0A`;
+      });
+      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+      const url = `https://wa.me/5531999456030?text=${mensagem}`;
+      window.open(url, '_blank');
     }
   </script>
-
-  <!-- Blog e Fale Conosco -->
-  <div class="blog">
-    <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
-    <!-- Seus artigos do blog aqui -->
-  </div>
-
-  <a class="zap-fixo" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
-    Fale conosco no WhatsApp
-  </a>
 </body>
 </html>
-
-
