@@ -81,6 +81,17 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .feedback {
+      background: #25D366;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: 600;
+      margin: 10px auto;
+      display: none;
+      max-width: 400px;
+    }
     .carrinho-container {
       max-width: 600px;
       margin: 40px auto;
@@ -88,6 +99,8 @@
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       padding: 20px;
+      position: sticky;
+      top: 20px;
     }
     .carrinho-container h2 {
       margin-bottom: 15px;
@@ -164,6 +177,7 @@
   </div>
 
   <div class="main-content">
+    <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
     <section class="produtos" id="lista-produtos"></section>
     <div class="carrinho-container">
       <h2>🛒 Carrinho</h2>
@@ -211,6 +225,7 @@
     const carrinho = [];
     const lista = document.getElementById('lista-produtos');
     const carrinhoItens = document.getElementById('carrinho-itens');
+    const feedbackMsg = document.getElementById('feedback-msg');
 
     produtos.forEach((produto, index) => {
       const precoOriginal = (produto.preco * 1.15).toFixed(2);
@@ -234,6 +249,7 @@
       const produto = produtos[index];
       carrinho.push({ nome: produto.nome, sabor: saborSelecionado, preco: produto.preco });
       atualizarCarrinho();
+      mostrarFeedback();
     }
 
     function removerItem(posicao) {
@@ -245,6 +261,13 @@
       carrinhoItens.innerHTML = carrinho.map((item, i) => `
         <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
       `).join('');
+    }
+
+    function mostrarFeedback() {
+      feedbackMsg.style.display = 'block';
+      setTimeout(() => {
+        feedbackMsg.style.display = 'none';
+      }, 1800);
     }
 
     function finalizarPedido() {
@@ -264,4 +287,5 @@
   </script>
 </body>
 </html>
+
 
