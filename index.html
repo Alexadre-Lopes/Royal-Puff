@@ -26,6 +26,35 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
+    .banners {
+      max-width: 1200px;
+      margin: 20px auto;
+      display: flex;
+      gap: 15px;
+      padding: 0 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .banners::-webkit-scrollbar {
+      display: none;
+    }
+    .banner {
+      min-width: 300px;
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .banner:hover {
+      transform: translateY(-5px);
+    }
+    .banner img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      cursor: pointer;
+    }
     .main-content {
       padding: 20px;
       max-width: 1200px;
@@ -88,10 +117,18 @@
       color: #d60000;
       margin: 5px 0;
     }
+    .sabor-label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #555;
+      text-align: left;
+      font-size: 14px;
+    }
     select {
       width: 100%;
       padding: 8px;
-      margin: 10px 0;
+      margin-bottom: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
       font-weight: 600;
@@ -183,6 +220,20 @@
       align-items: center;
       gap: 10px;
     }
+    .btn-ocultar {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: auto;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-ocultar:hover {
+      background: #5a6268;
+    }
     .carrinho-itens p {
       margin-bottom: 10px;
       padding-bottom: 10px;
@@ -253,6 +304,13 @@
     }
 
     @media (max-width: 768px) {
+      .banners {
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+      }
+      .banner {
+        min-width: 250px;
+      }
       .produto {
         width: calc(50% - 20px);
       }
@@ -262,6 +320,10 @@
       }
     }
     @media (max-width: 480px) {
+      .banner {
+        min-width: 200px;
+        height: 120px;
+      }
       .produto {
         width: 100%;
       }
@@ -275,20 +337,36 @@
   <header>
     <h1>ROYAL PUFF BH</h1>
   </header>
+  
+  <div class="banners">
+    <div class="banner" onclick="scrollToProduct('Sex addict - by Dan Bilzerian')">
+      <img src="banner1.jpg" alt="Banner Sex Addict" onerror="this.src='https://via.placeholder.com/600x200?text=Sex+Addict+Banner'">
+    </div>
+    <div class="banner" onclick="scrollToProduct('Lost Mary Mixer')">
+      <img src="banner2.jpg" alt="Banner Lost Mary" onerror="this.src='https://via.placeholder.com/600x200?text=Lost+Mary+Banner'">
+    </div>
+    <div class="banner" onclick="scrollToProduct('IGNITE V250')">
+      <img src="banner3.jpg" alt="Banner IGNITE V250" onerror="this.src='https://via.placeholder.com/600x200?text=IGNITE+V250+Banner'">
+    </div>
+  </div>
+
   <div class="main-content">
     <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
     <section class="produtos" id="lista-produtos"></section>
   </div>
+
   <button class="carrinho-toggle" onclick="toggleCarrinho()">
     <span id="cart-count">0</span> 🛒 Carrinho
   </button>
+
   <div class="carrinho-container" id="carrinho-box">
-    <h2>🛒 Carrinho</h2>
+    <h2>🛒 Carrinho <button class="btn-ocultar" onclick="toggleCarrinho()">Ocultar</button></h2>
     <div class="carrinho-itens" id="carrinho-itens">
       <p class="empty-cart">Seu carrinho está vazio</p>
     </div>
     <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
   </div>
+
   <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Olá,%20gostaria%20de%20fazer%20um%20pedido!" target="_blank">
     💬 Fale conosco
   </a>
@@ -420,12 +498,14 @@
         const precoOriginal = (produto.preco * 1.15).toFixed(2);
         const div = document.createElement('div');
         div.className = 'produto';
+        div.id = `produto-${produto.nome.replace(/\s+/g, '-')}`;
         div.innerHTML = `
           <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
           <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/240x240?text=${encodeURIComponent(produto.nome)}'">
           <h3>${produto.nome}</h3>
           <p class="preco-antigo">De R$ ${precoOriginal}</p>
           <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
+          <label class="sabor-label">Selecionar sabor:</label>
           <select id="sabor-${index}">
             ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
           </select>
@@ -508,6 +588,25 @@
       
       const url = `https://wa.me/5531999456030?text=${mensagem}`;
       window.open(url, '_blank');
+    }
+
+    // Rola a página até o produto específico
+    function scrollToProduct(productName) {
+      const productId = `produto-${productName.replace(/\s+/g, '-')}`;
+      const productElement = document.getElementById(productId);
+      
+      if (productElement) {
+        productElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+        
+        // Destaque visual temporário
+        productElement.style.boxShadow = '0 0 0 3px rgba(214, 161, 0, 0.5)';
+        setTimeout(() => {
+          productElement.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        }, 2000);
+      }
     }
 
     // Inicializa a página
