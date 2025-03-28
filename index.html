@@ -214,17 +214,178 @@
   <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">💬 Fale conosco no WhatsApp</a>
   <script>
     const produtos = [
-      { nome: 'IGNITE V50', imagem: 'ignite-v50.jpg', preco: 100.00, sabores: ['Blue Ice', 'Tropical Punch', 'Cotton Candy'], puffs: '5' },
-      { nome: 'Vape Soul ULTRA', imagem: 'vape-soul-ultra.jpg', preco: 112.00, sabores: ['Tropical Ice', 'Energy Drink'], puffs: '20' },
-      { nome: 'IGNITE V120', imagem: 'ignite-v120.jpg', preco: 134.40, sabores: ['Mint', 'Strawberry Banana', 'Pineapple Ice'], puffs: '12' },
-      { nome: 'IGNITE V150', imagem: 'ignite-v150.jpg', preco: 144.00, sabores: ['Blueberry Ice', 'Mango Peach'], puffs: '15' },
-      { nome: 'Elfbar 30K', imagem: 'elfbar-30k.jpg', preco: 153.30, sabores: ['Peach Ice', 'Grape Mint'], puffs: '30' },
-      { nome: 'Elfbar Nic King', imagem: 'elfbar-nic-king.jpg', preco: 168.00, sabores: ['Green Apple', 'Mint Cream'], puffs: '40' },
-      { nome: 'IGNITE V250', imagem: 'ignite-v250.jpg', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol'], puffs: '25' },
-      { nome: 'UWELL', imagem: 'uwell.jpg', preco: 189.80, sabores: ['Watermelon Ice', 'Banana Grape'], puffs: '40' },
-      { nome: 'Lost Mary Mixer', imagem: 'lost-mary-mixer-30k.jpg', preco: 189.93, sabores: ['Mix Mint', 'Mango Strawberry Ice'], puffs: '30' },
-      { nome: 'Sex addict - by Dan Bilzerian', imagem: 'sex-addict-s280.jpg', preco: 204.00, sabores: ['Grape Kiwi Ice', 'Watermelon Ice'], puffs: '28' }
-    ];
+     [
+  { 
+    nome: 'IGNITE V50', 
+    imagem: 'ignite-v50.jpg', 
+    preco: 100.00, 
+    sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
+    puffs: '5' 
+  },
+  { 
+    nome: 'Vape Soul ULTRA', 
+    imagem: 'vape-soul-ultra.jpg', 
+    preco: 112.00, 
+    sabores: [
+      'Spearmint', 
+      'Fresh Watermelon', 
+      'Berry Grape', 
+      'Grape Raspberry Lemon', 
+      'Cola Lime', 
+      'Pink Lemonade', 
+      'Sour Blueberry Raspberry', 
+      'Blue Razz', 
+      'Pineapple Ice', 
+      'Sour Apple', 
+      'Mango Ice', 
+      'Blueberry', 
+      'Love 66', 
+      'Passion Grapefruit', 
+      'Strawberry Watermelon Bubblegum'
+    ], 
+    puffs: '20' 
+  },
+  { 
+    nome: 'IGNITE V120', 
+    imagem: 'ignite-v120.jpg', 
+    preco: 134.40, 
+    sabores: [
+      'Straw Banana', 
+      'Cactus', 
+      'Blue Razz Lemon', 
+      'Mixed Berries', 
+      'Lemon Lime', 
+      'Mango Cream', 
+      'Watermelon Ice', 
+      'Menthol', 
+      'Blueberry Mint', 
+      'Peach Ice', 
+      'Pomegranate Lemon', 
+      'Watermelon Peach'
+    ], 
+    puffs: '12' 
+  },
+  { 
+    nome: 'IGNITE V150', 
+    imagem: 'ignite-v150.jpg', 
+    preco: 144.00, 
+    sabores: [
+      'Strawberry Apple Watermelon', 
+      'Peppermint & Cream', 
+      'Strawberry Ice', 
+      'Watermelon Mix', 
+      'Watermelon Dragon Fruit'
+    ], 
+    puffs: '15' 
+  },
+  { 
+    nome: 'Elfbar 30K', 
+    imagem: 'elfbar-30k.jpg', 
+    preco: 153.30, 
+    sabores: [
+      'Green Apple Ice', 
+      'Spearmint', 
+      'Sour Lush Gami', 
+      'Cherry Strazz', 
+      'Bubbaloo Tutti Frutti', 
+      'Blueberry Sour Raspberry', 
+      'Elf Love'
+    ], 
+    puffs: '30' 
+  },
+  { 
+    nome: 'Elfbar Nic King', 
+    imagem: 'elfbar-nic-king.jpg', 
+    preco: 168.00, 
+    sabores: [
+      'Pomegranate Burst', 
+      'Lemon Lime Ice Tea', 
+      'Icy Blue Rose', 
+      'Sour Strawberry Dragonfruit', 
+      'Watermelon Ice', 
+      'Watermelon Cherry', 
+      'Grape Cranberry', 
+      'Berry Ice', 
+      'Pineapple Dragonfruit Grapefruit', 
+      'Mixed Berries Tea', 
+      'Pear Soda', 
+      'Apple Candy', 
+      'Apple Watermelon', 
+      'Sour Cherry Candy', 
+      'Chilly River', 
+      'Blue Razz Ice', 
+      'Key Lime', 
+      'Berry Candy', 
+      'Red Raspberry Strawberry'
+    ], 
+    puffs: '40' 
+  },
+  { 
+    nome: 'IGNITE V250', 
+    imagem: 'ignite-v250.jpg', 
+    preco: 178.64, 
+    sabores: [
+      'Strawberry Banana', 
+      'Pineapple Ice', 
+      'Menthol', 
+      'Green Apple', 
+      'Watermelon Mix', 
+      'Peach Mango', 
+      'Strawberry Ice'
+    ], 
+    puffs: '25' 
+  },
+  { 
+    nome: 'UWELL', 
+    imagem: 'uwell.jpg', 
+    preco: 189.80, 
+    sabores: [
+      'Watermelon Bubble Gum & Rose Lychee Ice', 
+      'Rose Lychee Ice & Strawberry Banana Ice', 
+      'Triple Mango & Honeydew Ice Cream', 
+      'Blackcurrant Grape & Sea Salt Lemon'
+    ], 
+    puffs: '40' 
+  },
+  { 
+    nome: 'Lost Mary Mixer', 
+    imagem: 'lost-mary-mixer-30k.jpg', 
+    preco: 189.93, 
+    sabores: [
+      'Mix Mint', 
+      'Blue Razz Ice', 
+      'Raspberry Pineapple', 
+      'Apple Grape', 
+      'Miami Chill', 
+      'Orange Strawberry', 
+      'Cherry Lemon', 
+      'Grapefruit Lemon Lime', 
+      'Banana Cherry Ice', 
+      'Watermelon Ice', 
+      'Blueberry Watermelon', 
+      'Mango Strawberry Ice', 
+      'Aloe Grape Sour Apple', 
+      'Red Raspberry Strawberry', 
+      'Watermelon B-Pop'
+    ], 
+    puffs: '30' 
+  },
+  { 
+    nome: 'Sex addict - by Dan Bilzerian', 
+    imagem: 'sex-addict-s280.jpg', 
+    preco: 204.00, 
+    sabores: [
+      'Grape Kiwi Ice', 
+      'Strawberry Banana Ice', 
+      'Menthol', 
+      'Banana Ice', 
+      'Pineapple Ice', 
+      'Strawberry Kiwi Ice', 
+      'Watermelon Ice'
+    ], 
+    puffs: '28' 
+  }
+]
 
     const carrinho = [];
     const lista = document.getElementById('lista-produtos');
