@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UWELL | Minha Loja Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      color: #222;
+    }
+
+    .descricao {
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .sabores {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .sabores strong {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .sabores ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sabores li {
+      font-size: 16px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .sabores .check-icon {
+      color: #25D366;
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .preco {
+      margin-top: 20px;
+    }
+
+    .preco-antigo {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .preco-novo {
+      font-size: 22px;
+      color: #d60000;
+      font-weight: bold;
+    }
+
+    .btn-zap {
+      display: inline-block;
+      margin-top: 20px;
+      background: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="../uwell.jpg" alt="UWELL">
+    <h1>UWELL</h1>
+    <p class="descricao">
+      Elegante e sofisticado, o UWELL oferece uma experiência de vapor única com uma variedade de sabores deliciosos.
+    </p>
+    <div class="sabores">
+      <strong>Sabores disponíveis:</strong>
+      <ul>
+        <li><span class="check-icon">✔️</span> Watermelon bubble gum & Rose lychee ice 🍉🍬🌹</li>
+        <li><span class="check-icon">✔️</span> Rose lychee ice & Strawberry banana ice 🌹🍓🍌</li>
+        <li><span class="check-icon">✔️</span> Triple mango & Honeydew ice cream 🥭🍈🍦</li>
+        <li><span class="check-icon">✔️</span> Blackcurrant grape & Sea salt lemon 🍇🍋🧂</li>
+      </ul>
+    </div>
+    <div class="preco">
+      <p class="preco-antigo">De R$ 119,90</p>
+      <p class="preco-novo">Por R$ 89,90</p>
+    </div>
+    <a class="btn-zap" href="https://wa.me/5531999456030?text=Quero%20comprar%20o%20UWELL" target="_blank">Comprar via WhatsApp</a>
+  </div>
+</body>
+</html>
