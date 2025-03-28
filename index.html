@@ -297,14 +297,14 @@
     const produtos = [
       { 
         nome: 'IGNITE V50', 
-        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V50', 
+        imagem: 'ignite-v50.jpg', 
         preco: 100.00, 
         sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
         puffs: '5' 
       },
       { 
         nome: 'Vape Soul ULTRA', 
-        imagem: 'https://via.placeholder.com/240x240?text=Vape+Soul+ULTRA', 
+        imagem: 'vape-soul-ultra.jpg', 
         preco: 112.00, 
         sabores: [
           'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
@@ -316,7 +316,7 @@
       },
       { 
         nome: 'IGNITE V120', 
-        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V120', 
+        imagem: 'ignite-v120.jpg', 
         preco: 134.40, 
         sabores: [
           'Straw Banana', 'Cactus', 'Blue Razz Lemon', 'Mixed Berries',
@@ -327,7 +327,7 @@
       },
       { 
         nome: 'IGNITE V150', 
-        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V150', 
+        imagem: 'ignite-v150.jpg', 
         preco: 144.00, 
         sabores: [
           'Strawberry Apple Watermelon', 'Peppermint & Cream', 'Strawberry Ice',
@@ -337,7 +337,7 @@
       },
       { 
         nome: 'Elfbar 30K', 
-        imagem: 'https://via.placeholder.com/240x240?text=Elfbar+30K', 
+        imagem: 'elfbar-30k.jpg', 
         preco: 153.30, 
         sabores: [
           'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
@@ -347,7 +347,7 @@
       },
       { 
         nome: 'Elfbar Nic King', 
-        imagem: 'https://via.placeholder.com/240x240?text=Elfbar+Nic+King', 
+        imagem: 'elfbar-nic-king.jpg', 
         preco: 168.00, 
         sabores: [
           'Pomegranate Burst', 'Lemon Lime Ice Tea', 'Icy Blue Rose',
@@ -361,7 +361,7 @@
       },
       { 
         nome: 'IGNITE V250', 
-        imagem: 'https://via.placeholder.com/240x240?text=IGNITE+V250', 
+        imagem: 'ignite-v250.jpg', 
         preco: 178.64, 
         sabores: [
           'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
@@ -371,7 +371,7 @@
       },
       { 
         nome: 'UWELL', 
-        imagem: 'https://via.placeholder.com/240x240?text=UWELL', 
+        imagem: 'uwell.jpg', 
         preco: 189.80, 
         sabores: [
           'Watermelon Bubble Gum & Rose Lychee Ice',
@@ -383,7 +383,7 @@
       },
       { 
         nome: 'Lost Mary Mixer', 
-        imagem: 'https://via.placeholder.com/240x240?text=Lost+Mary+Mixer', 
+        imagem: 'lost-mary-mixer-30k.jpg', 
         preco: 189.93, 
         sabores: [
           'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
@@ -396,7 +396,7 @@
       },
       { 
         nome: 'Sex addict - by Dan Bilzerian', 
-        imagem: 'https://via.placeholder.com/240x240?text=Sex+addict', 
+        imagem: 'sex-addict-s280.jpg', 
         preco: 204.00, 
         sabores: [
           'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
@@ -422,7 +422,7 @@
         div.className = 'produto';
         div.innerHTML = `
           <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
-          <img src="${produto.imagem}" alt="${produto.nome}">
+          <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/240x240?text=${encodeURIComponent(produto.nome)}'">
           <h3>${produto.nome}</h3>
           <p class="preco-antigo">De R$ ${precoOriginal}</p>
           <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
