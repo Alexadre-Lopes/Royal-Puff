@@ -6,7 +6,54 @@
   <title>Minha Loja Express</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-$1.preco-antigo {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f5f5f5;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #d6a100;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .main-content {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .produtos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .produto {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      width: 240px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .produto img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .produto h3 {
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+    .preco-antigo {
       text-decoration: line-through;
       color: #888;
       font-size: 14px;
@@ -92,47 +139,6 @@ $1.preco-antigo {
     .banner-container img.active {
       display: block;
     }
-    .blog {
-      margin: 40px auto;
-      max-width: 1000px;
-      padding: 20px;
-    }
-    .blog h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: #222;
-      text-align: center;
-    }
-    .artigo {
-      background: #fff;
-      padding: 15px 20px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .artigo img {
-      width: 100px;
-      height: auto;
-      border-radius: 6px;
-    }
-    .artigo-content h3 {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 6px;
-    }
-    .artigo-content p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 5px;
-    }
-    .artigo-content a {
-      font-size: 14px;
-      color: #007bff;
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
@@ -153,50 +159,6 @@ $1.preco-antigo {
       <h2>🛒 Carrinho</h2>
       <div class="carrinho-itens" id="carrinho-itens"></div>
       <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
-    </div>
-  </div>
-
-  <div class="blog">
-    <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
-    <div class="artigo">
-      <img src="img-artigo1.jpg" alt="Artigo 1">
-      <div class="artigo-content">
-        <h3>1. Alternativa ao cigarro tradicional</h3>
-        <p>Reduz a exposição a toxinas presentes na queima do tabaco convencional.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-    <div class="artigo">
-      <img src="img-artigo2.jpg" alt="Artigo 2">
-      <div class="artigo-content">
-        <h3>2. Menor odor e impacto social</h3>
-        <p>Não deixa cheiro forte nas roupas ou ambientes.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-    <div class="artigo">
-      <img src="img-artigo3.jpg" alt="Artigo 3">
-      <div class="artigo-content">
-        <h3>3. Variedade de sabores</h3>
-        <p>Explora uma ampla gama de opções de sabores agradáveis.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-    <div class="artigo">
-      <img src="img-artigo4.jpg" alt="Artigo 4">
-      <div class="artigo-content">
-        <h3>4. Controle da nicotina</h3>
-        <p>Você escolhe se quer com ou sem nicotina, e em qual nível.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-    <div class="artigo">
-      <img src="img-artigo5.jpg" alt="Artigo 5">
-      <div class="artigo-content">
-        <h3>5. Praticidade e uso moderno</h3>
-        <p>Design discreto e elegante, fácil de usar em qualquer lugar.</p>
-        <a href="#">Leia mais</a>
-      </div>
     </div>
   </div>
 
@@ -241,13 +203,14 @@ $1.preco-antigo {
     const carrinhoItens = document.getElementById('carrinho-itens');
 
     produtos.forEach((produto, index) => {
+      const precoOriginal = (produto.preco * 1.15).toFixed(2);
       const div = document.createElement('div');
       div.className = 'produto';
       div.innerHTML = `
-        <span class="preco-antigo">De R$ ${(produto.preco * 1.15).toFixed(2)}</span>` +
         <img src="${produto.imagem}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
-        <p class="preco-novo">R$ ${produto.preco.toFixed(2)}</p>
+        <p class="preco-antigo">De R$ ${precoOriginal}</p>
+        <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
         <select id="sabor-${index}">
           ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
         </select>
@@ -286,3 +249,4 @@ $1.preco-antigo {
   </script>
 </body>
 </html>
+
