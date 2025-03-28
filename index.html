@@ -151,22 +151,24 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       z-index: 999;
     }
-    .banner-container {
-      max-width: 100%;
-      margin: 20px auto;
-      position: relative;
-    }
-    .banner-container a {
-      display: block;
-    }
-    .banner-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      display: none;
-    }
-    .banner-container img.active {
-      display: block;
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      .produtos {
+        width: 100%;
+      }
+      .carrinho-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        max-height: 60vh;
+        overflow-y: auto;
+      }
     }
   </style>
 </head>
@@ -174,14 +176,6 @@
   <header>
     <h1>ROYAL PUFF BH</h1>
   </header>
-
-  <div class="banner-container">
-    <a id="bannerLink" href="produtos/ignite-v250.html">
-      <img id="banner1" class="active" src="banner1.jpg" alt="Banner 1">
-      <img id="banner2" src="banner2.jpg" alt="Banner 2">
-    </a>
-  </div>
-
   <div class="main-content">
     <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
     <section class="produtos" id="lista-produtos"></section>
@@ -191,41 +185,13 @@
       <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
     </div>
   </div>
-
-  <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
-    💬 Fale conosco no WhatsApp
-  </a>
-
+  <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">💬 Fale conosco no WhatsApp</a>
   <script>
-    const banner1 = document.getElementById('banner1');
-    const banner2 = document.getElementById('banner2');
-    const bannerLink = document.getElementById('bannerLink');
-    let current = 1;
-    setInterval(() => {
-      if (current === 1) {
-        banner1.classList.remove('active');
-        banner2.classList.add('active');
-        bannerLink.href = "produtos/lost-mary-mixer-30k.html";
-        current = 2;
-      } else {
-        banner2.classList.remove('active');
-        banner1.classList.add('active');
-        bannerLink.href = "produtos/ignite-v250.html";
-        current = 1;
-      }
-    }, 4000);
-
     const produtos = [
       { nome: 'IGNITE V50', imagem: 'ignite-v50.jpg', preco: 100.00, sabores: ['Blue Ice', 'Tropical Punch', 'Cotton Candy'] },
       { nome: 'IGNITE V120', imagem: 'ignite-v120.jpg', preco: 134.40, sabores: ['Mint', 'Strawberry Banana', 'Pineapple Ice'] },
       { nome: 'IGNITE V150', imagem: 'ignite-v150.jpg', preco: 144.00, sabores: ['Blueberry Ice', 'Mango Peach', 'Cool Mint'] },
-      { nome: 'IGNITE V250', imagem: 'ignite-v250.jpg', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol', 'Strawberry Ice'] },
-      { nome: 'SEX ADDICT - by Dan Bilzerian', imagem: 'sex-addict-s280.jpg', preco: 204.00, sabores: ['Grape Kiwi Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'] },
-      { nome: 'Vape Soul ULTRA', imagem: 'vape-soul-ultra.jpg', preco: 112.00, sabores: ['Tropical Ice', 'Energy Drink', 'Blue Mint'] },
-      { nome: 'Elfbar 30K', imagem: 'elfbar-30k.jpg', preco: 153.30, sabores: ['Peach Ice', 'Grape Mint', 'Lemon Passionfruit'] },
-      { nome: 'Elfbar Nic King', imagem: 'elfbar-nic-king.jpg', preco: 168.00, sabores: ['Green Apple', 'Strawberry Banana Ice', 'Mint Cream'] },
-      { nome: 'Lost Mary Mixer', imagem: 'lost-mary-mixer-30k.jpg', preco: 189.93, sabores: ['Mix Mint', 'Blue Razz Ice', 'Mango Strawberry Ice'] },
-      { nome: 'UWELL', imagem: 'uwell.jpg', preco: 189.80, sabores: ['Watermelon Ice', 'Banana Grape', 'Cherry Lemon'] }
+      { nome: 'IGNITE V250', imagem: 'ignite-v250.jpg', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol', 'Strawberry Ice'] }
     ];
 
     const carrinho = [];
@@ -295,4 +261,3 @@
   </script>
 </body>
 </html>
-
