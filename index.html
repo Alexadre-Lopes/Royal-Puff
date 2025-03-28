@@ -94,8 +94,18 @@
       font-size: 22px;
       color: #333;
     }
-    .carrinho-itens {
-      margin-bottom: 15px;
+    .carrinho-itens p {
+      margin-bottom: 10px;
+    }
+    .btn-remover {
+      background: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 10px;
+      cursor: pointer;
     }
     .btn-finalizar {
       background: #007bff;
@@ -226,9 +236,14 @@
       atualizarCarrinho();
     }
 
+    function removerItem(posicao) {
+      carrinho.splice(posicao, 1);
+      atualizarCarrinho();
+    }
+
     function atualizarCarrinho() {
-      carrinhoItens.innerHTML = carrinho.map(item => `
-        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)}</p>
+      carrinhoItens.innerHTML = carrinho.map((item, i) => `
+        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
       `).join('');
     }
 
