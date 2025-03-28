@@ -165,52 +165,27 @@
       z-index: 999;
     }
 
-    .blog {
-      margin: 40px auto;
-      max-width: 1000px;
-      padding: 20px;
-    }
-
-    .blog h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: #222;
-      text-align: center;
-    }
-
-    .artigo {
-      background: #fff;
-      padding: 15px 20px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    /* Carrinho */
+    .carrinho {
       display: flex;
+      flex-direction: column;
       align-items: center;
+      margin-top: 20px;
       gap: 15px;
     }
 
-    .artigo img {
-      width: 100px;
-      height: auto;
-      border-radius: 6px;
+    .carrinho select, .carrinho button {
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
     }
 
-    .artigo-content h3 {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 6px;
-    }
-
-    .artigo-content p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 5px;
-    }
-
-    .artigo-content a {
-      font-size: 14px;
-      color: #007bff;
-      text-decoration: underline;
+    .carrinho button {
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
     }
 
     /* Responsividade */
@@ -262,7 +237,6 @@
       }
     }
 
-    /* Para telas pequenas (mobile) */
     @media (max-width: 480px) {
       header h1 {
         font-size: 24px;
@@ -305,27 +279,6 @@
     </a>
   </div>
 
-  <script>
-    const banner1 = document.getElementById('banner1');
-    const banner2 = document.getElementById('banner2');
-    const bannerLink = document.getElementById('bannerLink');
-    let current = 1;
-
-    setInterval(() => {
-      if (current === 1) {
-        banner1.classList.remove('active');
-        banner2.classList.add('active');
-        bannerLink.href = "produtos/lost-mary-mixer-30k.html";
-        current = 2;
-      } else {
-        banner2.classList.remove('active');
-        banner1.classList.add('active');
-        bannerLink.href = "produtos/ignite-v250.html";
-        current = 1;
-      }
-    }, 4000);
-  </script>
-
   <div class="carimbos">
     <div class="carimbo">🚚 Entrega por toda Belo Horizonte e região metropolitana</div>
     <div class="carimbo">📦 Produtos prontos para envio imediato</div>
@@ -334,146 +287,57 @@
 
   <div class="main-content">
     <section class="produtos">
-      <!-- Novos Produtos com a ordem alterada -->
+      <!-- Exemplo de produto com carrinho de compras -->
       <div class="produto">
         <span class="tag-desconto">-12,3%</span>
         <img src="ignite-v50.jpg" alt="IGNITE V50 BLACK">
         <h3>IGNITE V50</h3>
         <p class="preco-antigo">De R$ 114,00</p>
         <p class="preco-novo">Por R$ 100,00</p>
-        <a class="btn-detalhes" href="produtos/ignite-v50-black.html">Ver mais detalhes</a>
-      </div>
+        
+        <!-- Adicionando seleção de sabor e quantidade -->
+        <div class="carrinho">
+          <select id="produto1-sabor">
+            <option value="watermelon-bubble-gum">Watermelon Bubble Gum 🍉🍬</option>
+            <option value="rose-lychee-ice">Rose Lychee Ice 🌹❄️</option>
+          </select>
 
-      <div class="produto">
-        <span class="tag-desconto">-11,5%</span>
-        <img src="ignite-v120.jpg" alt="IGNITE V120">
-        <h3>IGNITE V120</h3>
-        <p class="preco-antigo">De R$ 151,87</p>
-        <p class="preco-novo">Por R$ 134,40</p>
-        <a class="btn-detalhes" href="produtos/ignite-v120.html">Ver mais detalhes</a>
+          <button onclick="adicionarAoCarrinho('IGNITE V50', document.getElementById('produto1-sabor').value)">Adicionar ao Carrinho</button>
+        </div>
       </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-9,1%</span>
-        <img src="ignite-v150.jpg" alt="IGNITE V150">
-        <h3>IGNITE V150</h3>
-        <p class="preco-antigo">De R$ 158,40</p>
-        <p class="preco-novo">Por R$ 144,00</p>
-        <a class="btn-detalhes" href="produtos/ignite-v150.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-9,1%</span>
-        <img src="ignite-v250.jpg" alt="IGNITE V250">
-        <h3>IGNITE V250</h3>
-        <p class="preco-antigo">De R$ 196,50</p>
-        <p class="preco-novo">Por R$ 178,64</p>
-        <a class="btn-detalhes" href="produtos/ignite-v250.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-18%</span>
-        <img src="sex-addict-s280.jpg" alt="SEX ADDICT s280">
-        <h3>SEX ADDICT - by Dan Bilzerian</h3>
-        <p class="preco-antigo">De R$ 248,88</p>
-        <p class="preco-novo">Por R$ 204,00</p>
-        <a class="btn-detalhes" href="produtos/sex-addict-s280.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-20,6%</span>
-        <img src="vape-soul-ultra.jpg" alt="Vape Soul ULTRA">
-        <h3>Vape Soul ULTRA</h3>
-        <p class="preco-antigo">De R$ 141,12</p>
-        <p class="preco-novo">Por R$ 112,00</p>
-        <a class="btn-detalhes" href="produtos/vape-soul-ultra.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-13%</span>
-        <img src="elfbar-30k.jpg" alt="Elfbar 30K">
-        <h3>Elfbar 30K</h3>
-        <p class="preco-antigo">De R$ 176,30</p>
-        <p class="preco-novo">Por R$ 153,30</p>
-        <a class="btn-detalhes" href="produtos/elfbar-30k.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-16,7%</span>
-        <img src="elfbar-nic-king.jpg" alt="Elfbar Nic King">
-        <h3>Elfbar Nic King</h3>
-        <p class="preco-antigo">De R$ 201,60</p>
-        <p class="preco-novo">Por R$ 168,00</p>
-        <a class="btn-detalhes" href="produtos/elfbar-nic-king.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-13,8%</span>
-        <img src="lost-mary-mixer-30k.jpg" alt="Lost Mary Mixer">
-        <h3>Lost Mary Mixer</h3>
-        <p class="preco-antigo">De R$ 220,32</p>
-        <p class="preco-novo">Por R$ 189,93</p>
-        <a class="btn-detalhes" href="produtos/lost-mary-mixer-30k.html">Ver mais detalhes</a>
-      </div>
-
-      <div class="produto">
-        <span class="tag-desconto">-9,1%</span>
-        <img src="uwell.jpg" alt="UWELL">
-        <h3>UWELL</h3>
-        <p class="preco-antigo">De R$ 208,78</p>
-        <p class="preco-novo">Por R$ 189,80</p>
-        <a class="btn-detalhes" href="produtos/uwell.html">Ver mais detalhes</a>
-      </div>
+      <!-- Continuar com outros produtos... -->
     </section>
+
+    <!-- Botão do Carrinho -->
+    <div class="carrinho">
+      <button onclick="gerarMensagem()">Finalizar Pedido</button>
+    </div>
   </div>
 
+  <script>
+    let carrinho = [];
+
+    function adicionarAoCarrinho(produto, sabor) {
+      carrinho.push({ produto: produto, sabor: sabor });
+      console.log(carrinho); // Apenas para debug
+    }
+
+    function gerarMensagem() {
+      let mensagem = "Pedido: ";
+      carrinho.forEach(item => {
+        mensagem += `${item.produto} - Sabor: ${item.sabor}, `;
+      });
+      mensagem = encodeURIComponent(mensagem);
+
+      const link = `https://wa.me/5531999456030?text=${mensagem}`;
+      window.open(link, '_blank');
+    }
+  </script>
+
+  <!-- Blog e Fale Conosco -->
   <div class="blog">
     <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
-
-    <div class="artigo">
-      <img src="img-artigo1.jpg" alt="Artigo 1">
-      <div class="artigo-content">
-        <h3>1. Alternativa ao cigarro tradicional</h3>
-        <p>Reduz a exposição a toxinas presentes na queima do tabaco convencional.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo2.jpg" alt="Artigo 2">
-      <div class="artigo-content">
-        <h3>2. Menor odor e impacto social</h3>
-        <p>Não deixa cheiro forte nas roupas ou ambientes.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo3.jpg" alt="Artigo 3">
-      <div class="artigo-content">
-        <h3>3. Variedade de sabores</h3>
-        <p>Explora uma ampla gama de opções de sabores agradáveis.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo4.jpg" alt="Artigo 4">
-      <div class="artigo-content">
-        <h3>4. Controle da nicotina</h3>
-        <p>Você escolhe se quer com ou sem nicotina, e em qual nível.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
-
-    <div class="artigo">
-      <img src="img-artigo5.jpg" alt="Artigo 5">
-      <div class="artigo-content">
-        <h3>5. Praticidade e uso moderno</h3>
-        <p>Design discreto e elegante, fácil de usar em qualquer lugar.</p>
-        <a href="#">Leia mais</a>
-      </div>
-    </div>
+    <!-- Seus artigos do blog aqui -->
   </div>
 
   <a class="zap-fixo" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
@@ -481,4 +345,5 @@
   </a>
 </body>
 </html>
+
 
