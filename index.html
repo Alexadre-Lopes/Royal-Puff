@@ -103,12 +103,91 @@
       font-size: 16px;
       cursor: pointer;
     }
+    .zap-flutuante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+    .banner-container {
+      max-width: 100%;
+      margin: 20px auto;
+      position: relative;
+    }
+    .banner-container a {
+      display: block;
+    }
+    .banner-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: none;
+    }
+    .banner-container img.active {
+      display: block;
+    }
+    .blog {
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 20px;
+    }
+    .blog h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #222;
+      text-align: center;
+    }
+    .artigo {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .artigo img {
+      width: 100px;
+      height: auto;
+      border-radius: 6px;
+    }
+    .artigo-content h3 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .artigo-content p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .artigo-content a {
+      font-size: 14px;
+      color: #007bff;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>ROYAL PUFF BH</h1>
   </header>
+
+  <div class="banner-container">
+    <a id="bannerLink" href="produtos/ignite-v250.html">
+      <img id="banner1" class="active" src="banner1.jpg" alt="Banner 1">
+      <img id="banner2" src="banner2.jpg" alt="Banner 2">
+    </a>
+  </div>
 
   <div class="main-content">
     <section class="produtos" id="lista-produtos"></section>
@@ -119,18 +198,84 @@
     </div>
   </div>
 
+  <div class="blog">
+    <h2>Blog: Benefícios dos Cigarros Eletrônicos</h2>
+    <div class="artigo">
+      <img src="img-artigo1.jpg" alt="Artigo 1">
+      <div class="artigo-content">
+        <h3>1. Alternativa ao cigarro tradicional</h3>
+        <p>Reduz a exposição a toxinas presentes na queima do tabaco convencional.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+    <div class="artigo">
+      <img src="img-artigo2.jpg" alt="Artigo 2">
+      <div class="artigo-content">
+        <h3>2. Menor odor e impacto social</h3>
+        <p>Não deixa cheiro forte nas roupas ou ambientes.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+    <div class="artigo">
+      <img src="img-artigo3.jpg" alt="Artigo 3">
+      <div class="artigo-content">
+        <h3>3. Variedade de sabores</h3>
+        <p>Explora uma ampla gama de opções de sabores agradáveis.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+    <div class="artigo">
+      <img src="img-artigo4.jpg" alt="Artigo 4">
+      <div class="artigo-content">
+        <h3>4. Controle da nicotina</h3>
+        <p>Você escolhe se quer com ou sem nicotina, e em qual nível.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+    <div class="artigo">
+      <img src="img-artigo5.jpg" alt="Artigo 5">
+      <div class="artigo-content">
+        <h3>5. Praticidade e uso moderno</h3>
+        <p>Design discreto e elegante, fácil de usar em qualquer lugar.</p>
+        <a href="#">Leia mais</a>
+      </div>
+    </div>
+  </div>
+
+  <a class="zap-flutuante" href="https://wa.me/5531999456030?text=Quero%20fazer%20um%20pedido" target="_blank">
+    💬 Fale conosco no WhatsApp
+  </a>
+
   <script>
+    const banner1 = document.getElementById('banner1');
+    const banner2 = document.getElementById('banner2');
+    const bannerLink = document.getElementById('bannerLink');
+    let current = 1;
+    setInterval(() => {
+      if (current === 1) {
+        banner1.classList.remove('active');
+        banner2.classList.add('active');
+        bannerLink.href = "produtos/lost-mary-mixer-30k.html";
+        current = 2;
+      } else {
+        banner2.classList.remove('active');
+        banner1.classList.add('active');
+        bannerLink.href = "produtos/ignite-v250.html";
+        current = 1;
+      }
+    }, 4000);
+
     const produtos = [
-      { nome: 'IGNITE V50', preco: 100.00, sabores: ['Blue Ice', 'Tropical Punch', 'Cotton Candy'] },
-      { nome: 'IGNITE V120', preco: 134.40, sabores: ['Mint', 'Strawberry Banana', 'Pineapple Ice'] },
-      { nome: 'IGNITE V150', preco: 144.00, sabores: ['Blueberry Ice', 'Mango Peach', 'Cool Mint'] },
-      { nome: 'IGNITE V250', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol', 'Strawberry Ice'] },
-      { nome: 'SEX ADDICT - by Dan Bilzerian', preco: 204.00, sabores: ['Grape Kiwi Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'] },
-      { nome: 'Vape Soul ULTRA', preco: 112.00, sabores: ['Tropical Ice', 'Energy Drink', 'Blue Mint'] },
-      { nome: 'Elfbar 30K', preco: 153.30, sabores: ['Peach Ice', 'Grape Mint', 'Lemon Passionfruit'] },
-      { nome: 'Elfbar Nic King', preco: 168.00, sabores: ['Green Apple', 'Strawberry Banana Ice', 'Mint Cream'] },
-      { nome: 'Lost Mary Mixer', preco: 189.93, sabores: ['Mix Mint', 'Blue Razz Ice', 'Mango Strawberry Ice'] },
-      { nome: 'UWELL', preco: 189.80, sabores: ['Watermelon Ice', 'Banana Grape', 'Cherry Lemon'] }
+      { nome: 'IGNITE V50', imagem: 'ignite-v50.jpg', preco: 100.00, sabores: ['Blue Ice', 'Tropical Punch', 'Cotton Candy'] },
+      { nome: 'IGNITE V120', imagem: 'ignite-v120.jpg', preco: 134.40, sabores: ['Mint', 'Strawberry Banana', 'Pineapple Ice'] },
+      { nome: 'IGNITE V150', imagem: 'ignite-v150.jpg', preco: 144.00, sabores: ['Blueberry Ice', 'Mango Peach', 'Cool Mint'] },
+      { nome: 'IGNITE V250', imagem: 'ignite-v250.jpg', preco: 178.64, sabores: ['Strawberry Banana', 'Menthol', 'Strawberry Ice'] },
+      { nome: 'SEX ADDICT - by Dan Bilzerian', imagem: 'sex-addict-s280.jpg', preco: 204.00, sabores: ['Grape Kiwi Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'] },
+      { nome: 'Vape Soul ULTRA', imagem: 'vape-soul-ultra.jpg', preco: 112.00, sabores: ['Tropical Ice', 'Energy Drink', 'Blue Mint'] },
+      { nome: 'Elfbar 30K', imagem: 'elfbar-30k.jpg', preco: 153.30, sabores: ['Peach Ice', 'Grape Mint', 'Lemon Passionfruit'] },
+      { nome: 'Elfbar Nic King', imagem: 'elfbar-nic-king.jpg', preco: 168.00, sabores: ['Green Apple', 'Strawberry Banana Ice', 'Mint Cream'] },
+      { nome: 'Lost Mary Mixer', imagem: 'lost-mary-mixer-30k.jpg', preco: 189.93, sabores: ['Mix Mint', 'Blue Razz Ice', 'Mango Strawberry Ice'] },
+      { nome: 'UWELL', imagem: 'uwell.jpg', preco: 189.80, sabores: ['Watermelon Ice', 'Banana Grape', 'Cherry Lemon'] }
     ];
 
     const carrinho = [];
@@ -141,6 +286,7 @@
       const div = document.createElement('div');
       div.className = 'produto';
       div.innerHTML = `
+        <img src="${produto.imagem}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
         <p class="preco-novo">R$ ${produto.preco.toFixed(2)}</p>
         <select id="sabor-${index}">
