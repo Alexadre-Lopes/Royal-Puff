@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROYAL PUFF BH</title>
+  <title>VAPEXPRESS - Sua Loja de Vape Premium</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,17 +14,34 @@
       overflow-x: hidden;
     }
     header {
-      background: #fff;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      padding: 15px 20px;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    header h1 {
-      font-size: 36px;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+    .logo-text {
+      font-size: 28px;
       font-weight: 700;
-      color: #d6a100;
+      color: white;
       text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .slogan {
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      margin-top: 5px;
+      font-weight: 600;
     }
     .banners {
       max-width: 1200px;
@@ -79,6 +96,11 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
       position: relative;
+      transition: all 0.3s ease;
+    }
+    .produto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     .tag-puffs {
       position: absolute;
@@ -186,6 +208,11 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .carrinho-toggle:hover {
+      background: #0069d9;
+      transform: translateY(-3px);
     }
     .carrinho-toggle span {
       background: #fff;
@@ -318,6 +345,12 @@
         width: 90%;
         right: 5%;
       }
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        height: 40px;
+      }
     }
     @media (max-width: 480px) {
       .banner {
@@ -327,15 +360,28 @@
       .produto {
         width: 100%;
       }
-      header h1 {
-        font-size: 28px;
+      .logo-container {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .logo-text {
+        font-size: 20px;
+      }
+      .slogan {
+        font-size: 12px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>ROYAL PUFF BH</h1>
+    <div class="logo-container">
+      <img src="logo.jpg" alt="VAPEXPRESS" class="logo-img" onerror="this.style.display='none'">
+      <div>
+        <div class="logo-text">VAPEXPRESS</div>
+        <div class="slogan">Sua Loja de Vape Premium</div>
+      </div>
+    </div>
   </header>
   
   <div class="banners">
@@ -381,18 +427,6 @@
         puffs: '5' 
       },
       { 
-        nome: 'Vape Soul ULTRA', 
-        imagem: 'vape-soul-ultra.jpg', 
-        preco: 112.00, 
-        sabores: [
-          'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
-          'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz',
-          'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66',
-          'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'
-        ], 
-        puffs: '20' 
-      },
-      { 
         nome: 'IGNITE V120', 
         imagem: 'ignite-v120.jpg', 
         preco: 134.40, 
@@ -414,12 +448,35 @@
         puffs: '15' 
       },
       { 
-        nome: 'Elfbar 30K', 
-        imagem: 'elfbar-30k.jpg', 
-        preco: 153.30, 
+        nome: 'IGNITE V250', 
+        imagem: 'ignite-v250.jpg', 
+        preco: 178.64, 
         sabores: [
-          'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
-          'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'
+          'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
+          'Watermelon Mix', 'Peach Mango', 'Strawberry Ice'
+        ], 
+        puffs: '25' 
+      },
+      { 
+        nome: 'Sex addict - by Dan Bilzerian', 
+        imagem: 'sex-addict-s280.jpg', 
+        preco: 204.00, 
+        sabores: [
+          'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
+          'Pineapple Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'
+        ], 
+        puffs: '28' 
+      },
+      { 
+        nome: 'Lost Mary Mixer', 
+        imagem: 'lost-mary-mixer-30k.jpg', 
+        preco: 189.93, 
+        sabores: [
+          'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
+          'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime',
+          'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon',
+          'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry',
+          'Watermelon B-Pop'
         ], 
         puffs: '30' 
       },
@@ -438,14 +495,26 @@
         puffs: '40' 
       },
       { 
-        nome: 'IGNITE V250', 
-        imagem: 'ignite-v250.jpg', 
-        preco: 178.64, 
+        nome: 'Elfbar 30K', 
+        imagem: 'elfbar-30k.jpg', 
+        preco: 153.30, 
         sabores: [
-          'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
-          'Watermelon Mix', 'Peach Mango', 'Strawberry Ice'
+          'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
+          'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'
         ], 
-        puffs: '25' 
+        puffs: '30' 
+      },
+      { 
+        nome: 'Vape Soul ULTRA', 
+        imagem: 'vape-soul-ultra.jpg', 
+        preco: 112.00, 
+        sabores: [
+          'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
+          'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz',
+          'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66',
+          'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'
+        ], 
+        puffs: '20' 
       },
       { 
         nome: 'UWELL', 
@@ -458,29 +527,6 @@
           'Blackcurrant Grape & Sea Salt Lemon'
         ], 
         puffs: '40' 
-      },
-      { 
-        nome: 'Lost Mary Mixer', 
-        imagem: 'lost-mary-mixer-30k.jpg', 
-        preco: 189.93, 
-        sabores: [
-          'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
-          'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime',
-          'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon',
-          'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry',
-          'Watermelon B-Pop'
-        ], 
-        puffs: '30' 
-      },
-      { 
-        nome: 'Sex addict - by Dan Bilzerian', 
-        imagem: 'sex-addict-s280.jpg', 
-        preco: 204.00, 
-        sabores: [
-          'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
-          'Pineapple Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'
-        ], 
-        puffs: '28' 
       }
     ];
 
