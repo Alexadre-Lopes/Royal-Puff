@@ -176,10 +176,10 @@
     </a>
   </div>
 
-  <div class="main-content">
+  <div class="main-content" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
     <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
-    <section class="produtos" id="lista-produtos"></section>
-    <div class="carrinho-container">
+    <section class="produtos" id="lista-produtos" style="flex: 1 1 60%;"></section>
+    <div class="carrinho-container" style="flex: 1 1 35%;">
       <h2>🛒 Carrinho</h2>
       <div class="carrinho-itens" id="carrinho-itens"></div>
       <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
@@ -258,8 +258,12 @@
     }
 
     function atualizarCarrinho() {
-      carrinhoItens.innerHTML = carrinho.map((item, i) => `
-        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
+  const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+  carrinhoItens.innerHTML = carrinho.map((item, i) => `
+    <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
+  `).join('');
+  carrinhoItens.innerHTML += `<hr><p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
+} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
       `).join('');
     }
 
