@@ -156,7 +156,7 @@
       bottom: 20px;
       right: 20px;
       background: #25D366;
-      color: #fff;
+      color: white;
       padding: 12px 16px;
       border-radius: 30px;
       text-decoration: none;
@@ -287,28 +287,42 @@
 
   <div class="main-content">
     <section class="produtos">
-      <!-- Exemplo de produto com carrinho de compras -->
+      <!-- Produtos e seus sabores -->
       <div class="produto">
         <span class="tag-desconto">-12,3%</span>
         <img src="ignite-v50.jpg" alt="IGNITE V50 BLACK">
         <h3>IGNITE V50</h3>
         <p class="preco-antigo">De R$ 114,00</p>
         <p class="preco-novo">Por R$ 100,00</p>
-        
-        <!-- Adicionando seleção de sabor e quantidade -->
         <div class="carrinho">
           <select id="produto1-sabor">
             <option value="watermelon-bubble-gum">Watermelon Bubble Gum 🍉🍬</option>
             <option value="rose-lychee-ice">Rose Lychee Ice 🌹❄️</option>
           </select>
-
           <button onclick="adicionarAoCarrinho('IGNITE V50', document.getElementById('produto1-sabor').value)">Adicionar ao Carrinho</button>
         </div>
       </div>
-      <!-- Continuar com outros produtos... -->
+
+      <div class="produto">
+        <span class="tag-desconto">-11,5%</span>
+        <img src="ignite-v120.jpg" alt="IGNITE V120">
+        <h3>IGNITE V120</h3>
+        <p class="preco-antigo">De R$ 151,87</p>
+        <p class="preco-novo">Por R$ 134,40</p>
+        <div class="carrinho">
+          <select id="produto2-sabor">
+            <option value="mango-bubblegum">Mango Bubblegum 🥭🍬</option>
+            <option value="grape-ice">Grape Ice 🍇❄️</option>
+          </select>
+          <button onclick="adicionarAoCarrinho('IGNITE V120', document.getElementById('produto2-sabor').value)">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+
+      <!-- Continuar com todos os outros produtos da mesma forma -->
+
     </section>
 
-    <!-- Botão do Carrinho -->
+    <!-- Botão para Finalizar o Pedido -->
     <div class="carrinho">
       <button onclick="gerarMensagem()">Finalizar Pedido</button>
     </div>
