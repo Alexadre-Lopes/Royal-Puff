@@ -30,8 +30,13 @@
       padding: 20px;
       max-width: 1200px;
       margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
     }
     .produtos {
+      flex: 1 1 60%;
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -91,16 +96,17 @@
       margin: 10px auto;
       display: none;
       max-width: 400px;
+      width: 100%;
     }
     .carrinho-container {
-      max-width: 600px;
-      margin: 40px auto;
+      flex: 1 1 35%;
       background: white;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       padding: 20px;
+      height: fit-content;
       position: sticky;
-      top: 20px;
+      top: 100px;
     }
     .carrinho-container h2 {
       margin-bottom: 15px;
@@ -176,10 +182,10 @@
     </a>
   </div>
 
-  <div class="main-content" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+  <div class="main-content">
     <div class="feedback" id="feedback-msg">Produto adicionado ao carrinho!</div>
-    <section class="produtos" id="lista-produtos" style="flex: 1 1 60%;"></section>
-    <div class="carrinho-container" style="flex: 1 1 35%;">
+    <section class="produtos" id="lista-produtos"></section>
+    <div class="carrinho-container">
       <h2>🛒 Carrinho</h2>
       <div class="carrinho-itens" id="carrinho-itens"></div>
       <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar Pedido no WhatsApp</button>
@@ -258,13 +264,11 @@
     }
 
     function atualizarCarrinho() {
-  const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
-  carrinhoItens.innerHTML = carrinho.map((item, i) => `
-    <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
-  `).join('');
-  carrinhoItens.innerHTML += `<hr><p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
-} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
+      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      carrinhoItens.innerHTML = carrinho.map((item, i) => `
+        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
       `).join('');
+      carrinhoItens.innerHTML += `<hr><p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
     }
 
     function mostrarFeedback() {
@@ -291,5 +295,4 @@
   </script>
 </body>
 </html>
-
 
