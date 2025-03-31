@@ -346,6 +346,25 @@
       padding-top: 10px;
       border-top: 2px solid #eee;
     }
+    .esgotado {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #d60000;
+      font-size: 18px;
+    }
+    button.adicionar:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
 
     @media (max-width: 768px) {
       .banners {
@@ -441,118 +460,9 @@
   </a>
 
   <script>
-    const produtos = [
-      { 
-        nome: 'IGNITE V50', 
-        imagem: 'ignite-v50.jpg', 
-        preco: 100.00, 
-        sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
-        puffs: '5' 
-      },
-      { 
-        nome: 'IGNITE V120', 
-        imagem: 'ignite-v120.jpg', 
-        preco: 134.40, 
-        sabores: [
-          'Straw Banana', 'Cactus', 'Blue Razz Lemon', 'Mixed Berries',
-          'Lemon Lime', 'Mango Cream', 'Watermelon Ice', 'Menthol',
-          'Blueberry Mint', 'Peach Ice', 'Pomegranate Lemon', 'Watermelon Peach'
-        ], 
-        puffs: '12' 
-      },
-      { 
-        nome: 'IGNITE V150', 
-        imagem: 'ignite-v150.jpg', 
-        preco: 144.00, 
-        sabores: [
-          'Strawberry Apple Watermelon', 'Peppermint & Cream', 'Strawberry Ice',
-          'Watermelon Mix', 'Watermelon Dragon Fruit'
-        ], 
-        puffs: '15' 
-      },
-      { 
-        nome: 'IGNITE V250', 
-        imagem: 'ignite-v250.jpg', 
-        preco: 178.64, 
-        sabores: [
-          'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
-          'Watermelon Mix', 'Peach Mango', 'Strawberry Ice'
-        ], 
-        puffs: '25' 
-      },
-      { 
-        nome: 'Sex addict - by Dan Bilzerian', 
-        imagem: 'sex-addict-s280.jpg', 
-        preco: 204.00, 
-        sabores: [
-          'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
-          'Pineapple Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'
-        ], 
-        puffs: '28' 
-      },
-      { 
-        nome: 'Lost Mary Mixer', 
-        imagem: 'lost-mary-mixer-30k.jpg', 
-        preco: 189.93, 
-        sabores: [
-          'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
-          'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime',
-          'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon',
-          'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry',
-          'Watermelon B-Pop'
-        ], 
-        puffs: '30' 
-      },
-      { 
-        nome: 'Elfbar Nic King', 
-        imagem: 'elfbar-nic-king.jpg', 
-        preco: 168.00, 
-        sabores: [
-          'Pomegranate Burst', 'Lemon Lime Ice Tea', 'Icy Blue Rose',
-          'Sour Strawberry Dragonfruit', 'Watermelon Ice', 'Watermelon Cherry',
-          'Grape Cranberry', 'Berry Ice', 'Pineapple Dragonfruit Grapefruit',
-          'Mixed Berries Tea', 'Pear Soda', 'Apple Candy', 'Apple Watermelon',
-          'Sour Cherry Candy', 'Chilly River', 'Blue Razz Ice', 'Key Lime',
-          'Berry Candy', 'Red Raspberry Strawberry'
-        ], 
-        puffs: '40' 
-      },
-      { 
-        nome: 'Elfbar 30K', 
-        imagem: 'elfbar-30k.jpg', 
-        preco: 153.30, 
-        sabores: [
-          'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
-          'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'
-        ], 
-        puffs: '30' 
-      },
-      { 
-        nome: 'Vape Soul ULTRA', 
-        imagem: 'vape-soul-ultra.jpg', 
-        preco: 112.00, 
-        sabores: [
-          'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
-          'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz',
-          'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66',
-          'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'
-        ], 
-        puffs: '20' 
-      },
-      { 
-        nome: 'UWELL', 
-        imagem: 'uwell.jpg', 
-        preco: 189.80, 
-        sabores: [
-          'Watermelon Bubble Gum & Rose Lychee Ice',
-          'Rose Lychee Ice & Strawberry Banana Ice',
-          'Triple Mango & Honeydew Ice Cream',
-          'Blackcurrant Grape & Sea Salt Lemon'
-        ], 
-        puffs: '40' 
-      }
-    ];
-
+    // Variável global para armazenar o estoque atual
+    let estoqueAtual = {};
+    let produtos = [];
     const carrinho = [];
     const lista = document.getElementById('lista-produtos');
     const carrinhoItens = document.getElementById('carrinho-itens');
@@ -560,6 +470,196 @@
     const carrinhoBox = document.getElementById('carrinho-box');
     const cartCount = document.getElementById('cart-count');
 
+    // Função para buscar estoque do backend
+    async function buscarEstoque() {
+      try {
+        const response = await fetch('http://localhost:5000/api/estoque');
+        if (!response.ok) throw new Error('Erro ao buscar estoque');
+        
+        const data = await response.json();
+        
+        // Transforma o array em um objeto mais fácil de manipular
+        estoqueAtual = {};
+        data.forEach(item => {
+          const key = `${item.modelo}-${item.sabor}`;
+          estoqueAtual[key] = {
+            id: item.id,
+            quantidade: item.quantidade,
+            preco_venda: item.preco_venda
+          };
+        });
+        
+        return true;
+      } catch (error) {
+        console.error('Erro ao buscar estoque:', error);
+        // Se falhar, usa os dados locais como fallback
+        carregarProdutosLocais();
+        return false;
+      }
+    }
+
+    // Função fallback caso a API não esteja disponível
+    function carregarProdutosLocais() {
+      produtos = [
+        { 
+          id: 1, nome: 'IGNITE V50', 
+          imagem: 'ignite-v50.jpg', 
+          preco: 100.00, 
+          sabores: ['Grape Ice', 'Blue Dream', 'Banana Ice', 'Blue Raspberry Ice'], 
+          puffs: '5' 
+        },
+        { 
+          id: 2, nome: 'IGNITE V120', 
+          imagem: 'ignite-v120.jpg', 
+          preco: 134.40, 
+          sabores: [
+            'Straw Banana', 'Cactus', 'Blue Razz Lemon', 'Mixed Berries',
+            'Lemon Lime', 'Mango Cream', 'Watermelon Ice', 'Menthol',
+            'Blueberry Mint', 'Peach Ice', 'Pomegranate Lemon', 'Watermelon Peach'
+          ], 
+          puffs: '12' 
+        },
+        { 
+          id: 3, nome: 'IGNITE V150', 
+          imagem: 'ignite-v150.jpg', 
+          preco: 144.00, 
+          sabores: [
+            'Strawberry Apple Watermelon', 'Peppermint & Cream', 'Strawberry Ice',
+            'Watermelon Mix', 'Watermelon Dragon Fruit'
+          ], 
+          puffs: '15' 
+        },
+        { 
+          id: 4, nome: 'IGNITE V250', 
+          imagem: 'ignite-v250.jpg', 
+          preco: 178.64, 
+          sabores: [
+            'Strawberry Banana', 'Pineapple Ice', 'Menthol', 'Green Apple',
+            'Watermelon Mix', 'Peach Mango', 'Strawberry Ice'
+          ], 
+          puffs: '25' 
+        },
+        { 
+          id: 5, nome: 'Sex addict - by Dan Bilzerian', 
+          imagem: 'sex-addict-s280.jpg', 
+          preco: 204.00, 
+          sabores: [
+            'Grape Kiwi Ice', 'Strawberry Banana Ice', 'Menthol', 'Banana Ice',
+            'Pineapple Ice', 'Strawberry Kiwi Ice', 'Watermelon Ice'
+          ], 
+          puffs: '28' 
+        },
+        { 
+          id: 6, nome: 'Lost Mary Mixer', 
+          imagem: 'lost-mary-mixer-30k.jpg', 
+          preco: 189.93, 
+          sabores: [
+            'Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape',
+            'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime',
+            'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon',
+            'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry',
+            'Watermelon B-Pop'
+          ], 
+          puffs: '30' 
+        },
+        { 
+          id: 7, nome: 'Elfbar Nic King', 
+          imagem: 'elfbar-nic-king.jpg', 
+          preco: 168.00, 
+          sabores: [
+            'Pomegranate Burst', 'Lemon Lime Ice Tea', 'Icy Blue Rose',
+            'Sour Strawberry Dragonfruit', 'Watermelon Ice', 'Watermelon Cherry',
+            'Grape Cranberry', 'Berry Ice', 'Pineapple Dragonfruit Grapefruit',
+            'Mixed Berries Tea', 'Pear Soda', 'Apple Candy', 'Apple Watermelon',
+            'Sour Cherry Candy', 'Chilly River', 'Blue Razz Ice', 'Key Lime',
+            'Berry Candy', 'Red Raspberry Strawberry'
+          ], 
+          puffs: '40' 
+        },
+        { 
+          id: 8, nome: 'Elfbar 30K', 
+          imagem: 'elfbar-30k.jpg', 
+          preco: 153.30, 
+          sabores: [
+            'Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz',
+            'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'
+          ], 
+          puffs: '30' 
+        },
+        { 
+          id: 9, nome: 'Vape Soul ULTRA', 
+          imagem: 'vape-soul-ultra.jpg', 
+          preco: 112.00, 
+          sabores: [
+            'Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon',
+            'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz',
+            'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66',
+            'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'
+          ], 
+          puffs: '20' 
+        },
+        { 
+          id: 10, nome: 'UWELL', 
+          imagem: 'uwell.jpg', 
+          preco: 189.80, 
+          sabores: [
+            'Watermelon Bubble Gum & Rose Lychee Ice',
+            'Rose Lychee Ice & Strawberry Banana Ice',
+            'Triple Mango & Honeydew Ice Cream',
+            'Blackcurrant Grape & Sea Salt Lemon'
+          ], 
+          puffs: '40' 
+        }
+      ];
+      
+      // Simula estoque para cada sabor
+      produtos.forEach(produto => {
+        produto.sabores.forEach(sabor => {
+          const key = `${produto.nome}-${sabor}`;
+          if (!estoqueAtual[key]) {
+            estoqueAtual[key] = {
+              id: produto.id,
+              quantidade: 10, // Quantidade padrão para fallback
+              preco_venda: produto.preco
+            };
+          }
+        });
+      });
+    }
+
+    // Função para verificar disponibilidade no estoque
+    function verificarDisponibilidade(produtoNome, sabor) {
+      const key = `${produtoNome}-${sabor}`;
+      return estoqueAtual[key] && estoqueAtual[key].quantidade > 0;
+    }
+
+    // Função para registrar uma venda no backend
+    async function registrarVendaBackend(produtoId, quantidade, sabor) {
+      try {
+        const response = await fetch('http://localhost:5000/api/venda', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            produto_id: produtoId,
+            quantidade_vendida: quantidade,
+            preco_venda: 0, // Será substituído pelo preço do estoque
+            sabor: sabor
+          })
+        });
+        
+        if (!response.ok) throw new Error('Erro ao registrar venda');
+        
+        const data = await response.json();
+        return data.success;
+      } catch (error) {
+        console.error('Erro ao registrar venda:', error);
+        return false;
+      }
+    }
+
+    // Carrega os produtos na página
     function carregarProdutos() {
       lista.innerHTML = '';
       produtos.forEach((produto, index) => {
@@ -567,6 +667,14 @@
         const div = document.createElement('div');
         div.className = 'produto';
         div.id = `produto-${produto.nome.replace(/\s+/g, '-')}`;
+        
+        // Verifica disponibilidade para cada sabor
+        const saboresDisponiveis = produto.sabores.filter(sabor => 
+          verificarDisponibilidade(produto.nome, sabor)
+        );
+        
+        const todosEsgotados = saboresDisponiveis.length === 0;
+        
         div.innerHTML = `
           <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
           <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/240x240?text=${encodeURIComponent(produto.nome)}'">
@@ -574,10 +682,15 @@
           <p class="preco-antigo">De R$ ${precoOriginal}</p>
           <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
           <label class="sabor-label">Selecionar sabor:</label>
-          <select id="sabor-${index}">
-            ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
+          <select id="sabor-${index}" ${todosEsgotados ? 'disabled' : ''}>
+            ${saboresDisponiveis.length > 0 ? 
+              saboresDisponiveis.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('') : 
+              '<option>ESGOTADO</option>'}
           </select>
-          <button class="adicionar" onclick="adicionarCarrinho(${index})">Adicionar ao carrinho</button>
+          <button class="adicionar" onclick="adicionarCarrinho(${index})" ${todosEsgotados ? 'disabled' : ''}>
+            ${todosEsgotados ? 'ESGOTADO' : 'Adicionar ao carrinho'}
+          </button>
+          ${todosEsgotados ? '<div class="esgotado">ESGOTADO</div>' : ''}
         `;
         lista.appendChild(div);
       });
@@ -587,18 +700,46 @@
       carrinhoBox.style.display = carrinhoBox.style.display === 'none' || carrinhoBox.style.display === '' ? 'block' : 'none';
     }
 
-    function adicionarCarrinho(index) {
+    async function adicionarCarrinho(index) {
       const saborSelecionado = document.getElementById(`sabor-${index}`).value;
       const produto = produtos[index];
+      const key = `${produto.nome}-${saborSelecionado}`;
       
-      carrinho.push({
-        nome: produto.nome,
-        sabor: saborSelecionado,
-        preco: produto.preco
-      });
+      // Verifica estoque novamente antes de adicionar
+      if (!verificarDisponibilidade(produto.nome, saborSelecionado)) {
+        mostrarFeedback('Produto esgotado!', false);
+        carregarProdutos(); // Atualiza a UI
+        return;
+      }
       
-      atualizarCarrinho();
-      mostrarFeedback();
+      // Obtém o ID do produto no estoque
+      const produtoEstoque = estoqueAtual[key];
+      
+      // Registra a venda no backend
+      const sucesso = await registrarVendaBackend(produtoEstoque.id, 1, saborSelecionado);
+      
+      if (sucesso) {
+        // Atualiza o estoque local
+        estoqueAtual[key].quantidade -= 1;
+        
+        // Adiciona ao carrinho
+        carrinho.push({
+          id: produtoEstoque.id,
+          nome: produto.nome,
+          sabor: saborSelecionado,
+          preco: produtoEstoque.preco_venda
+        });
+        
+        atualizarCarrinho();
+        mostrarFeedback('Produto adicionado ao carrinho!', true);
+        
+        // Atualiza a UI se o produto esgotou
+        if (estoqueAtual[key].quantidade <= 0) {
+          carregarProdutos();
+        }
+      } else {
+        mostrarFeedback('Erro ao adicionar produto!', false);
+      }
     }
 
     function removerItem(posicao) {
@@ -624,7 +765,9 @@
       cartCount.textContent = carrinho.length;
     }
 
-    function mostrarFeedback() {
+    function mostrarFeedback(mensagem, sucesso) {
+      feedbackMsg.textContent = mensagem;
+      feedbackMsg.style.background = sucesso ? '#25D366' : '#d60000';
       feedbackMsg.style.display = 'block';
       setTimeout(() => {
         feedbackMsg.style.display = 'none';
@@ -633,7 +776,7 @@
 
     function finalizarPedido() {
       if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
+        mostrarFeedback('Seu carrinho está vazio!', false);
         return;
       }
       
@@ -650,6 +793,10 @@
       
       const url = `https://wa.me/5531999456030?text=${mensagem}`;
       window.open(url, '_blank');
+      
+      // Limpa o carrinho após finalizar
+      carrinho.length = 0;
+      atualizarCarrinho();
     }
 
     function scrollToProduct(productName) {
@@ -669,7 +816,17 @@
       }
     }
 
-    window.onload = function() {
+    // Inicialização
+    window.onload = async function() {
+      // Tenta buscar o estoque do backend
+      const estoqueCarregado = await buscarEstoque();
+      
+      if (!estoqueCarregado) {
+        // Se falhar, usa os dados locais
+        carregarProdutosLocais();
+        mostrarFeedback('Modo offline ativado - estoque pode não estar atualizado', false);
+      }
+      
       carregarProdutos();
       atualizarCarrinho();
     };
