@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VAPEXPRESS - Sua Loja de Vape Premium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* CSS ORIGINAL COMPLETO (SEM ALTERAÇÕES) */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -346,6 +347,25 @@
       padding-top: 10px;
       border-top: 2px solid #eee;
     }
+    .esgotado {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #d60000;
+      font-size: 18px;
+    }
+    button.adicionar:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
 
     @media (max-width: 768px) {
       .banners {
@@ -397,6 +417,7 @@
   </style>
 </head>
 <body>
+  <!-- Estrutura HTML Original Preservada -->
   <header>
     <div class="logo-container">
       <img src="logo.jpg" alt="VAPEXPRESS" class="logo-img" onerror="this.style.display='none'">
@@ -441,7 +462,7 @@
   </a>
 
   <script>
-    // Dados locais dos produtos
+    // Dados dos produtos (versão simplificada sem banco)
     const produtos = [
       { 
         id: 1, 
@@ -488,4 +509,174 @@
         nome: 'Lost Mary Mixer', 
         imagem: 'lost-mary-mixer-30k.jpg', 
         preco: 189.93, 
-        sabores: ['Mix Mint', 'Blue Razz Ice', 'Raspberry
+        sabores: ['Mix Mint', 'Blue Razz Ice', 'Raspberry Pineapple', 'Apple Grape', 'Miami Chill', 'Orange Strawberry', 'Cherry Lemon', 'Grapefruit Lemon Lime', 'Banana Cherry Ice', 'Watermelon Ice', 'Blueberry Watermelon', 'Mango Strawberry Ice', 'Aloe Grape Sour Apple', 'Red Raspberry Strawberry', 'Watermelon B-Pop'], 
+        puffs: '30' 
+      },
+      { 
+        id: 7, 
+        nome: 'Elfbar Nic King', 
+        imagem: 'elfbar-nic-king.jpg', 
+        preco: 168.00, 
+        sabores: ['Pomegranate Burst', 'Lemon Lime Ice Tea', 'Icy Blue Rose', 'Sour Strawberry Dragonfruit', 'Watermelon Ice', 'Watermelon Cherry', 'Grape Cranberry', 'Berry Ice', 'Pineapple Dragonfruit Grapefruit', 'Mixed Berries Tea', 'Pear Soda', 'Apple Candy', 'Apple Watermelon', 'Sour Cherry Candy', 'Chilly River', 'Blue Razz Ice', 'Key Lime', 'Berry Candy', 'Red Raspberry Strawberry'], 
+        puffs: '40' 
+      },
+      { 
+        id: 8, 
+        nome: 'Elfbar 30K', 
+        imagem: 'elfbar-30k.jpg', 
+        preco: 153.30, 
+        sabores: ['Green Apple Ice', 'Spearmint', 'Sour Lush Gami', 'Cherry Strazz', 'Bubbaloo Tutti Frutti', 'Blueberry Sour Raspberry', 'Elf Love'], 
+        puffs: '30' 
+      },
+      { 
+        id: 9, 
+        nome: 'Vape Soul ULTRA', 
+        imagem: 'vape-soul-ultra.jpg', 
+        preco: 112.00, 
+        sabores: ['Spearmint', 'Fresh Watermelon', 'Berry Grape', 'Grape Raspberry Lemon', 'Cola Lime', 'Pink Lemonade', 'Sour Blueberry Raspberry', 'Blue Razz', 'Pineapple Ice', 'Sour Apple', 'Mango Ice', 'Blueberry', 'Love 66', 'Passion Grapefruit', 'Strawberry Watermelon Bubblegum'], 
+        puffs: '20' 
+      },
+      { 
+        id: 10, 
+        nome: 'UWELL', 
+        imagem: 'uwell.jpg', 
+        preco: 189.80, 
+        sabores: ['Watermelon Bubble Gum & Rose Lychee Ice', 'Rose Lychee Ice & Strawberry Banana Ice', 'Triple Mango & Honeydew Ice Cream', 'Blackcurrant Grape & Sea Salt Lemon'], 
+        puffs: '40' 
+      }
+    ];
+
+    // Sistema do Carrinho (Original)
+    const carrinho = [];
+    const lista = document.getElementById('lista-produtos');
+    const carrinhoItens = document.getElementById('carrinho-itens');
+    const feedbackMsg = document.getElementById('feedback-msg');
+    const carrinhoBox = document.getElementById('carrinho-box');
+    const cartCount = document.getElementById('cart-count');
+
+    function carregarProdutos() {
+      lista.innerHTML = '';
+      produtos.forEach((produto, index) => {
+        const precoOriginal = (produto.preco * 1.15).toFixed(2);
+        const div = document.createElement('div');
+        div.className = 'produto';
+        div.id = `produto-${produto.nome.replace(/\s+/g, '-')}`;
+        
+        div.innerHTML = `
+          <span class="tag-puffs">até ${produto.puffs} mil puffs</span>
+          <img src="${produto.imagem}" alt="${produto.nome}" onerror="this.src='https://via.placeholder.com/240x240?text=${encodeURIComponent(produto.nome)}'">
+          <h3>${produto.nome}</h3>
+          <p class="preco-antigo">De R$ ${precoOriginal}</p>
+          <p class="preco-novo">Por R$ ${produto.preco.toFixed(2)}</p>
+          <label class="sabor-label">Selecionar sabor:</label>
+          <select id="sabor-${index}">
+            ${produto.sabores.map(sabor => `<option value="${sabor}">${sabor}</option>`).join('')}
+          </select>
+          <button class="adicionar" onclick="adicionarCarrinho(${index})">
+            Adicionar ao carrinho
+          </button>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    // Funções do Carrinho (Original)
+    function toggleCarrinho() {
+      carrinhoBox.style.display = carrinhoBox.style.display === 'none' || carrinhoBox.style.display === '' ? 'block' : 'none';
+    }
+
+    function adicionarCarrinho(index) {
+      const saborSelecionado = document.getElementById(`sabor-${index}`).value;
+      const produto = produtos[index];
+      
+      carrinho.push({
+        nome: produto.nome,
+        sabor: saborSelecionado,
+        preco: produto.preco
+      });
+      
+      atualizarCarrinho();
+      mostrarFeedback('Produto adicionado ao carrinho!', true);
+    }
+
+    function removerItem(posicao) {
+      carrinho.splice(posicao, 1);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      if (carrinho.length === 0) {
+        carrinhoItens.innerHTML = '<p class="empty-cart">Seu carrinho está vazio</p>';
+        cartCount.textContent = '0';
+        return;
+      }
+      
+      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      
+      carrinhoItens.innerHTML = carrinho.map((item, i) => `
+        <p>✅ ${item.nome} - ${item.sabor} - R$ ${item.preco.toFixed(2)} 
+        <button class="btn-remover" onclick="removerItem(${i})">remover</button></p>
+      `).join('');
+      
+      carrinhoItens.innerHTML += `<p class="total-carrinho">Total: R$ ${total.toFixed(2)}</p>`;
+      cartCount.textContent = carrinho.length;
+    }
+
+    function mostrarFeedback(mensagem, sucesso) {
+      feedbackMsg.textContent = mensagem;
+      feedbackMsg.style.background = sucesso ? '#25D366' : '#d60000';
+      feedbackMsg.style.display = 'block';
+      setTimeout(() => {
+        feedbackMsg.style.display = 'none';
+      }, 2000);
+    }
+
+    function finalizarPedido() {
+      if (carrinho.length === 0) {
+        mostrarFeedback('Seu carrinho está vazio!', false);
+        return;
+      }
+      
+      let mensagem = 'Olá, gostaria de fazer o seguinte pedido:%0A%0A';
+      mensagem += '*ITENS DO PEDIDO:*%0A';
+      
+      carrinho.forEach(item => {
+        mensagem += `- ${item.nome} (${item.sabor}) - R$ ${item.preco.toFixed(2)}%0A`;
+      });
+      
+      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      mensagem += `%0A*TOTAL: R$ ${total.toFixed(2)}*%0A%0A`;
+      mensagem += 'Por favor, confirme meu pedido! Obrigado!';
+      
+      const url = `https://wa.me/5531999456030?text=${mensagem}`;
+      window.open(url, '_blank');
+      
+      carrinho.length = 0;
+      atualizarCarrinho();
+    }
+
+    function scrollToProduct(productName) {
+      const productId = `produto-${productName.replace(/\s+/g, '-')}`;
+      const productElement = document.getElementById(productId);
+      
+      if (productElement) {
+        productElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+        
+        productElement.style.boxShadow = '0 0 0 3px rgba(214, 161, 0, 0.5)';
+        setTimeout(() => {
+          productElement.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        }, 2000);
+      }
+    }
+
+    // Inicialização
+    window.onload = function() {
+      carregarProdutos();
+      atualizarCarrinho();
+    };
+  </script>
+</body>
+</html>
